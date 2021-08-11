@@ -1,0 +1,47 @@
+<div class="container">
+   <div class="row no-gutters">
+      <div class="col-md-8 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
+        <h4 class="text-dark bg-light py-4 mb-0">ログイン</h4>
+        <div class="text-center">
+          <%= form_with model: @user, url: user_session_path, local: true do |f| %>
+
+           <div class="input-group p-4">
+             <div class="input-group-prepend">
+               <span class="input-group-text" aria-hidden="true">
+                 <i class="fas fa-envelope"></i>
+               </span>
+             </div>
+             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: 'sample@example.com' %>
+           </div>
+
+           <div class="input-group p-4">
+             <div class="input-group-prepend">
+               <span class="input-group-text" aria-hidden="true">
+                 <i class="fas fa-lock"></i>
+               </span>
+             </div>
+               <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "password minimum 6" %>
+           </div>
+
+           <div class="col-md-8 input-group p-4">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <% if devise_mapping.rememberable? %>
+                   <%= f.check_box :remember_me %>
+                </div>
+                 <% end %>
+              </div>
+               <%= f.label :"記憶する場合はチェックを入れてください" , class: "form-control" %>
+            </div>
+
+          <div class="submit-group p-4">
+            <%= f.submit "ログイン", class: "btn btn-outline-info btn-block" %>
+          </div>
+          <% end %>
+        </div>
+          <div class="col-md-8 input-group p-4">
+           <%= render "devise/shared/links" %>
+          </div>
+      </div>
+   </div>
+</div>
