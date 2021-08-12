@@ -1,2 +1,10 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<% @posts.each do |posts| %>
+<div>
+  <%= attachment_image_tag(posts,:image, size: "200x200", fallback: "no_imag.jpg") %>
+  <p>旅先：<%= posts.destination %></p>
+  <p>宿泊数：<%= posts.nights %>泊<%= posts.days %>日</p>
+  <p>予算：<%= posts.budget %></p>
+  <p>一言：<%= posts.content %></p>
+  <%= link_to "計画表はこちら", tasks_path(@task.id) %>
+</div>
+<% end %>

@@ -16,9 +16,7 @@ Rails.application.routes.draw do
   get 'relationships/following'
   get 'relationships/follower'
   resources :tasks, except: :show
-  resources :posts do
-    get 'search', on: :collection
-  end
+  resources :posts
   namespace :admin do
     resources :tasks
   end
