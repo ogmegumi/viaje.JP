@@ -1,2 +1,12 @@
-<h1>Admin::Tasks#new</h1>
-<p>Find me in app/views/admin/tasks/new.html.erb</p>
+<div class="my-4 offset-1"><h3 class="page_title">忘れ物確認リスト</h3></div>
+<div class="new-product-form col-8 offset-2">
+  <%= form_with model: @task, url: admin_tasks_path(@task), local:true do |f| %>
+  
+  <div><%= f.label :"カテゴリー" %></div>
+  <div><%= f.text_field :category %></div>
+  <div><%= f.label :"計画"%></div>
+  <div><%= f.text_field :plan_content %></div>
+  
+  <div><%= f.submit, class: 'btn btn-success btn-lg py-3 col-3 offset-4' %></div>
+<% end %>
+<%= link_to '戻る', admin_tasks_path %>

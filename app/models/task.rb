@@ -1,3 +1,3 @@
 class Task < ApplicationRecord
-  has_many :tasks, dependent: :destroy
+  has_many :posts, dependent: :destroy
 end

@@ -35,7 +35,7 @@
             </p>
             <span>
               <div id="favorite-btn_<%= posts.id %>">
-                <%= render 'favorite/favorite-btn', posts: posts %>
+                <%= render "favorite/favorite-btn", posts: posts %>
               </div>
               <%= link_to "計画表はこちら", tasks_path %>
               <%= link_to "#{posts.post_comments.count} コメント", post_path(posts.id) %>
