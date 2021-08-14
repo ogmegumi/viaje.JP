@@ -1,0 +1,2 @@
+$(".commentsArea").html("<%= j(render 'post_comments/comment', { post_comments: @post_comment.post.comments }) %>")
+$(".inputComment").val('');

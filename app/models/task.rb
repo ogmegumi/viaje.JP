@@ -1,4 +1,3 @@
 class Task < ApplicationRecord
-  belongs_to :user
-  belongs_to :post
+  has_many :tasks, dependent: :destroy
 end

@@ -1,6 +1,5 @@
-<div class="card-list-container py-5">
-  <div class="card w-50 mx-auto mt-4 shadow-lg">
-    <% @posts.each do |posts| %>
+
+    <% posts.each do |posts| %>
       <% if posts.user == current_user %>
         <div class="dropdown dropright ml-auto">
           <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,5 +44,3 @@
          </div>
       </div>
     <% end %>
-  </div>
-</div>
