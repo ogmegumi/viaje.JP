@@ -10,13 +10,14 @@ Rails.application.routes.draw do
   resources :users
   get 'users/unsubscribe'
   get 'users/withdraw'
-  resources :post_comments, only: [:create, :destroy]
-  resources :favorites,     only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   get 'relationships/following'
   get 'relationships/follower'
   resources :tasks, except: :show
-  resources :posts
+  resources :posts do
+    resources :post_comments, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
+  end
   namespace :admin do
     resources :tasks
   end

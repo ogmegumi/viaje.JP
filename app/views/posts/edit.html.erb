@@ -1,2 +1,15 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<h1>編集画面</h1>
+<%= form_with model: @post, local:true do |f| %>
+  <h4>画像</h4>
+  <%= f.attachment_field :image %>
+  <h4>旅先</h4>
+  <%= f.text_field :destination %>
+  <h4>宿泊数</h4>
+  <%= f.select :nights, [["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8],["9",9],["10",10]] %>泊
+  <%= f.select :days, [["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8],["9",9],["10",10]] %>日
+  <h4>予算</h4>
+  <%= f.text_field :budget %>
+  <h4>一言</h4>
+  <%= f.text_field :content %>
+  <%= f.submit '投稿' %>
+<% end %>
