@@ -6,16 +6,15 @@ class PostCommentsController < ApplicationController
     @post_comment.post_id = @post.id
     @post_comment.user_id = current_user.id
     @post_comment.save
-      # render 'error'  # app/views/post_comments/error.js.erbを参照する ※要件外
-
+    # redirect_to posts_path
     # app/views/post_comments/create.js.erbを参照する
   end
 
   def destroy
     @post = Post.find(params[:post_id])
-    @post_comment = current_user.comments.find_by(post_id: @post.id)
+    @post_comment = @post.post_comments.find_by(post_id: @post.id)
     @post_comment.destroy
-    # redirect_back(fallback_location: root_path)
+    # redirect_back(fallback_location: posts_path)
   end
 
   private

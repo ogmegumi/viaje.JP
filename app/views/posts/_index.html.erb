@@ -1,46 +1,41 @@
-
-    <% posts.each do |posts| %>
-      <% if posts.user == current_user %>
-        <div class="dropdown dropright ml-auto">
-          <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-ellipsis-h"></i>
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <button class="dropdown-item" type="button"><%= link_to "削除", post_path(posts), method: :delete %></button>
-            <button class="dropdown-item" type="button"><%= link_to "編集", edit_post_path(posts) %></button>
-          </div>
-        </div>
-      <% end %>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-2">
-            <!--user画像のせる-->
-          </div>
-          <div class="col-10">
-           <%= attachment_image_tag(posts,:image, size: "300x300", fallback: "no_imag.jpg") %>
-           <p class="text-dark">
-             <i class="fas fa-plane"></i>
-             <strong><%= posts.destination %></strong>
-           </p>
-            <p>
-              <i class="fas fa-luggage-cart"></i>
-              <%= posts.nights %>泊<%= posts.days %>日
-            </p>
-            <p>
-              <i class="fas fa-hand-holding-usd"></i>
-              <%= posts.budget %>
-            </p>
-            <p>
-              <%= posts.content %>
-            </p>
-            <span>
-              <div id="favorite-btn_<%= posts.id %>">
-                <%= render "favorite/favorite-btn", posts: posts %>
-              </div>
-              <%= link_to "計画表はこちら", tasks_path %>
-              <%= link_to "#{posts.post_comments.count} コメント", post_path(posts.id) %>
-            </span>
-           </div>
+  <% @posts.each do |posts| %>
+    <div class="dropdown dropright ml-auto">
+     <% if posts.user == current_user %>
+       <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-ellipsis-h"></i>
+       </button>
+       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <%= link_to "削除", post_path(posts), method: :delete, class:"dropdown-item btn" %>
+        <%= link_to "編集", edit_post_path(posts), class:"dropdown-item btn" %>
+        <%= link_to "プロフィール編集", edit_user_path(posts.user), class:"dropdown-item btn" %>
+       </div>
+     <% end %>
+    </div>
+    
+     <%= link_to post_path(posts) do %>
+      <%= attachment_image_tag posts, :image, class:"card-img-top"; %>
+     <% end %>
+     <div class="card-body">
+      <div class="row">
+       <div class="col-2">
+        <%= attachment_image_tag posts.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class:"mt-3 rounded-circle"; %>
+       </div>
+       <div class="col-10">
+        <p class="card-title">
+         <%= link_to(post_path(posts.id), class:"text-dark") do %>
+          <strong><i class="fas fa-plane"></i><span><%= posts.destination %></span></strong>
+         <% end %>
+        </p>
+        <p><i class="fas fa-luggage-cart"></i><%= posts.nights %>泊<%= posts.days %>日</p>
+        <p><i class="fas fa-hand-holding-usd"></i><%= posts.budget %></p>
+        <p><i class="fas fa-flag"></i><%= posts.content %></p>
+        <span>
+         <div id="favorite-btn_<%= posts.id %>">
+          <%= render 'favorite/favorite-btn', posts: posts %>
          </div>
+          <%= link_to "計画表はこちら", tasks_path %>
+          <%= link_to "#{posts.post_comments.count} コメント", post_path(posts.id) %>
+        </span>
+       </div>
       </div>
-    <% end %>
+  <% end %>

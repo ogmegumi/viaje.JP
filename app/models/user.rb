@@ -8,5 +8,5 @@ class User < ApplicationRecord
   has_many :memos,          dependent: :destroy
   has_many :post_connments, dependent: :destroy
   has_many :favorites,      dependent: :destroy
-
+  attachment :profile_image
 end

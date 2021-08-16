@@ -1,14 +1,12 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = current_user.posts.all
+    @posts = Post.all
+    @post_comments = PostComment.all
+    @post_comment = PostComment.new
   end
 
   def show
-    @posts = Post.all
-    @post = Post.find(params[:id])
-    @post_comment = PostComment.new
-    @post_comments = @post.post_comments.all
   end
 
   def new
@@ -18,8 +16,11 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to posts_path
+    if @post.save
+      redirect_to posts_path
+    else
+      render :new
+    end
   end
 
   def destroy

@@ -1,2 +1,2 @@
-$(".comment").html("<%= j(render 'post_comments/comment', { post_comments: @post_comment, posts: @posts }) %>")
+$("#comment_<% posts.id %>").html("<%= j(render 'post_comments/comment', { post_comments: @post_comment, posts: @posts }) %>")
 $(".form").val('');

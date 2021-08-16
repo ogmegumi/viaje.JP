@@ -1,7 +1,7 @@
 <div class="containar mx-auto w-50">
   <div class="row">
     <div class="col-3 ml-auto">
-      <%= link_to new_admin_task_path, class: "btn btn-primary", method: :get do %>
+      <%= link_to new_task_path, class: "btn btn-primary", method: :get do %>
        <i class="fas fa-plus-circle"></i>
       <% end %>
     </div>
@@ -11,8 +11,8 @@
       <div class="index-item mb-20">
         <%= check_box_tag :check %>
         <%= label_tag :check, task.brlongings %>
-        <%= link_to "削除", admin_task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
-        <%= link_to "編集", edit_admin_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
+        <%= link_to "削除", task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+        <%= link_to "編集", edit_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
       </div>
     <% end %>
 
@@ -21,8 +21,8 @@
       <div class="index-item mb-20">
         <%= check_box_tag :check %>
         <%= label_tag :check, task.brlongings %>
-        <%= link_to "削除", admin_task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
-        <%= link_to "編集", edit_admin_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
+        <%= link_to "削除", task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+        <%= link_to "編集", edit_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
       </div>
     <% end %>
   <div class="category bg-success">電子機器</div>
@@ -30,8 +30,8 @@
       <div class="index-item mb-20">
         <%= check_box_tag :check %>
         <%= label_tag :check, task.brlongings %>
-        <%= link_to "削除", admin_task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
-        <%= link_to "編集", edit_admin_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
+        <%= link_to "削除", task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+        <%= link_to "編集", edit_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
       </div>
     <% end %>
   <div class="category bg-success">洗面用具</div>
@@ -39,8 +39,8 @@
       <div class="index-item mb-20">
         <%= check_box_tag :check %>
         <%= label_tag :check, task.brlongings %>
-        <%= link_to "削除", admin_task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
-        <%= link_to "編集", edit_admin_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
+        <%= link_to "削除", task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+        <%= link_to "編集", edit_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
       </div>
     <% end %>
   <div class="category bg-success">衣類</div>
@@ -48,8 +48,8 @@
       <div class="index-item mb-20">
         <%= check_box_tag :check %>
         <%= label_tag :check, task.brlongings %>
-        <%= link_to "削除", admin_task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
-        <%= link_to "編集", edit_admin_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
+        <%= link_to "削除", task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+        <%= link_to "編集", edit_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
       </div>
     <% end %>
   <div class="category bg-success">その他</div>
@@ -57,8 +57,8 @@
       <div class="index-item mb-20">
         <%= check_box_tag :check %>
         <%= label_tag :check, task.brlongings %>
-        <%= link_to "削除", admin_task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
-        <%= link_to "編集", edit_admin_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
+        <%= link_to "削除", task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+        <%= link_to "編集", edit_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
       </div>
     <% end %>
 
