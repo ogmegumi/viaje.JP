@@ -1,15 +1,44 @@
-<h1>画像投稿フォーム</h1>
-<%= form_with model: @post, local:true do |f| %>
-  <h4>画像</h4>
-  <%= f.attachment_field :image %>
-  <h4>旅先</h4>
-  <%= f.text_field :destination %>
-  <h4>宿泊数</h4>
-  <%= f.select :nights, [["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8],["9",9],["10",10]] %>泊
-  <%= f.select :days, [["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8],["9",9],["10",10]] %>日
-  <h4>予算</h4>
-  <%= f.text_field :budget %>
-  <h4>一言</h4>
-  <%= f.text_field :content %>
-  <%= f.submit '投稿' %>
-<% end %>
+<div class="containar">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">画像投稿フォーム</h5>
+      <div class="form-body p-4">
+       <% if @post.errors.any? %>
+         <%= @post.errors.count %>件のエラーが発生しました
+         <% @post.errors.full_messages.each do |message| %>
+           <%= message %>
+         <% end %>
+       <% end %>
+       <%= form_with model: @post, local:true do |f| %>
+         <%= f.attachment_field :image, class:"w-100" %>
+         <div class="input-group mb-3 mt-4">
+           <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-plane"></i></span>
+           </div>
+           <%= f.text_field :destination, class:"form-control", placeholder:"行先" %>
+         </div>
+         <div class="input-group mb-3 mt-4">
+           <div class="input-group-prepend">
+             <span class="input-group-text" aria-hidden="true"><i class="fas fa-building"></i></span>
+             <%= f.select :nights, [["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8],["9",9],["10",10]], class:"form-control" %>泊
+             <%= f.select :days, [["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8],["9",9],["10",10]], class:"form-control" %>日
+           </div>
+         </div>
+         <div class="input-group mb-3 mt-4">
+           <div class="input-group-prepend">
+             <span class="input-group-text" aria-hidden="true"><i class="fas fa-hand-holding-usd"></i></span>
+           </div>
+          <%= f.text_field :budget, class:"form-control", placeholder:"予算" %>円
+         </div>
+         <div class="input-group mb-3 mt-4">
+           <div class="input-group-prepend">
+             <span class="input-group-text" aria-hidden="true"><i class="fas fa-comment-alt"></i></span>
+           </div>
+         　<%= f.text_field :content, class:"form-control", placeholder:"コメント・感想" %>
+         </div>
+         <hr>
+         <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
+       <% end %>
+      </div>
+    </div>
+  </div>

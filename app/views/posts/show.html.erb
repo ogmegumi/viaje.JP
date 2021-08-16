@@ -1,20 +1,9 @@
-<div class="card-list-container py-5">
-  <div class="card w-50 mx-auto mt-4 shadow-lg">
-    <%= render "posts/index", posts: @posts %>
+<div class="card w-50 mx-auto mt-4 shadow-lg">
 
-    <% if @post_comments %>
-      <div class="commentOutline">
-        <%= render "post_comments/comment", post_comments: @post_comments %>
-      </div>
-    <% else %>
-      <p>コメントはまだありません</p>
-    <% end %>
+<div class="plan-time-info-left">
+  
+</div>
+<div class="plan-content-right">
+</div>
 
-    <div class="bottomInput">
-      <%= form_with(model: [@post, @post_comment], id: "new-comment") do |f| %>
-        <%= f.text_field :comment, class: "inputComment" %>
-        <%= f.submit "コメントする", class: "submitComment" %>
-      <% end %>
-    </div>
-  </div>
 </div>
