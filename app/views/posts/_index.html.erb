@@ -5,7 +5,7 @@
         <div class="card-header align-items-center d-flex">
            <%= attachment_image_tag post.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class:"mt-3 rounded-circle"; %>
             <span>
-             <%= link_to user_path(post.user) do %>
+             <%= link_to user_path(post.user), class:"ml-3 h5" do %>
                <i class="fas fa-user"></i>
                <%= post.user.name %>
               <% end %>
@@ -25,7 +25,7 @@
         </div>
         <%= attachment_image_tag post, :image, class:"card-img-top" %>
         <div class="card-body">
-          <div class="row parts">
+          <div class="row ml-3 mb-3">
             <span id="favorite-btn_<%= post.id %>">
               <%= render "favorites/favorite-btn", post: post %>
             </span>
@@ -34,21 +34,21 @@
             </span>
           </div>
           <div>
-            <p class="cardtitle text-dark"><i class="fas fa-plane"></i>
+            <p class="cardtitle text-dark ml-3"><i class="fas fa-plane"></i>
              <strong><%= post.destination %></strong>
             </p>
-            <p class="card-text text-dark"><i class="fas fa-luggage-cart"></i>
+            <p class="card-text text-dark ml-3"><i class="fas fa-luggage-cart"></i>
               <%= post.nights %>泊<%= post.days %>日
             </p>
-            <p class="card-text text-dark"><i class="fas fa-hand-holding-usd"></i>
+            <p class="card-text text-dark ml-3"><i class="fas fa-hand-holding-usd"></i>
              <%= post.budget %>
             </p>
-            <p class="card-text text-dark">
+            <p class="card-text text-dark ml-3">
               <%= post.content %>
             </p>
-              <%= link_to "計画表はこちら", tasks_path %>
+              <%= link_to "計画表はこちら", plans_path(@plan) %>
             <hr>
-            <div class="row parts">
+            <div class="row d-block">
               <div id="comment">
                 <%= render "post_comments/comment", post: post %>
               </div>

@@ -1,4 +1,4 @@
- <% post.post_comments.first(1).each do |post_comment| %>
+ <% post.post_comments.last(1).each do |post_comment| %>
       <% post_comment_user = post_comment.user %>
       <div class="container">
         <div class="row d-flex align-items-center pb-3">
@@ -16,13 +16,13 @@
           </div>
         </div>
       </div>
-      <div class="card card-body border-info rounded mb-3">
+      <div class="card mw-100 card-body border-info rounded mb-3">
        <%= post_comment.comment %>
       </div>
   <% end %>
 <p>
   <button type="button" class="btn btn-outline-info btn-sm" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    コメントを見る
+    コメントをもっと見る
   </button>
 </p>
 <br>
@@ -45,7 +45,7 @@
           </div>
         </div>
       </div>
-      <div class="card card-body border-info rounded mb-3" style="width: 700px;">
+      <div class="card mw-100 card-body border-info rounded mb-3">
        <%= post_comment.comment %>
       </div>
   <% end %>
