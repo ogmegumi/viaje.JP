@@ -1,0 +1,37 @@
+<div class='container px-5 px-sm-0'>
+   <div class='row'>
+     <div class='col-md-8'>
+       <table class='table'>
+         <thead>
+           <tr>
+             <th scope="col">画像</th>
+             <th scope="col">名前</th>
+             <th scope="col">フォロー</th>
+             <th scope="col">フォロワー</th>
+           </tr>
+         </thead>
+         <tbody>
+           <% @users.each do |user| %>
+             <tr>
+               <th scope="row">
+                  <%= attachment_image_tag(user, :profile_image, size:"100x100", fallback: "noimage.png") %>
+               </th>
+               <td><%= link_to user.name, user_path(user), class: "user_#{user.id}" %></td>
+               <td><%= user.followings.count %>人</td>
+               <td><%= user.followers.count %>人</td>
+               <% if current_user.following?(user) %>
+                 <td><%= link_to "Unfollow", user_relationships_path(user.id), method: :delete, class:"btn btn-outline-secondary" %></td>
+               <% else %>
+                  <td><%= link_to "Follow", user_relationships_path(user.id), method: :post, class:"btn btn-outline-secondary" %></td>
+               <% end %>
+             </tr>
+           <% end %>
+         </tbody>
+       </table>
+      </div>
+      <div class="col-md-3">
+          <h4>会員情報</h4>
+        <%= render 'list', user: current_user %>
+      </div>
+    </div>
+  </div>

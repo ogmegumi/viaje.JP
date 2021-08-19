@@ -6,9 +6,6 @@ class PostsController < ApplicationController
     @post_comment = PostComment.new
   end
 
-  def show
-  end
-
   def new
    @post = Post.new
   end
@@ -37,9 +34,6 @@ class PostsController < ApplicationController
    @post = Post.find(params[:id])
    @post.update(post_params)
    redirect_to posts_path(@posts)
-  end
-
-  def search
   end
 
   private

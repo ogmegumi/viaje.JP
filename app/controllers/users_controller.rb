@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+
+  def index
+    @users = User.all
+    @user = current_user
+  end
+
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).reverse_order
@@ -15,9 +21,14 @@ class UsersController < ApplicationController
   end
 
   def unsubscribe
+    @user = User.find_by(name: params[:name])
   end
 
   def withdraw
+    @user = User.find_by(name: params[:name])
+    @user.update(unsubscribe: false)
+    reset_session
+    redirect_to root_path
   end
 
   private

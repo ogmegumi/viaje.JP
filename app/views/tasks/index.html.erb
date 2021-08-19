@@ -11,8 +11,10 @@
       <div class="index-item mb-20">
         <%= check_box_tag :check %>
         <%= label_tag :check, task.brlongings %>
-        <%= link_to "削除", task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
-        <%= link_to "編集", edit_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
+        <% if @plan.user.id == current_user.id %>
+    　　    <%= link_to "削除", task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+      　　  <%= link_to "編集", edit_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
+      　<% end %>
       </div>
     <% end %>
 
