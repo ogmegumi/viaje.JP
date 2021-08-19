@@ -1,2 +1,35 @@
-<h1>Memos#index</h1>
-<p>Find me in app/views/memos/index.html.erb</p>
+<div class="containar">
+  <div class="row">
+    <div class="col-md-8 ml-auto">
+      <div class="text-white text-center bg-info">MEMO</div>
+     <% @memos.each do |memo| %>
+      <div class="text-center border-bottom h-3", style="height: 20%;"><br>
+        <%= check_box_tag :check %>
+        <%= label_tag :check, memo.memo %>
+          <%= link_to "削除",memo_path(memo), method: :delete, class:"btn btn-outline-danger btn-sm" %>
+          <%= link_to "編集", edit_memo_path(memo), class:"bbtn btn-outline-success btn-sm" %><br>
+      </div>
+     <% end %>
+    </div>
+    <div class="col-md-3 col-sm-10 shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4">MEMO投稿</h5>
+      <div class="form-body p-4">
+       <% if @memo.errors.any? %>
+         <%= @memo.errors.count %>件のエラーが発生しました
+         <% @memo.errors.full_messages.each do |message| %>
+           <%= message %>
+         <% end %>
+       <% end %>
+       <%= form_with model: @memo, local:true do |f| %>
+         <div class="input-group mb-3 mt-4">
+           <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-suitcase"></i></span>
+           </div>
+           <%= f.text_field :memo, class:"form-control", placeholder:"memo" %>
+         </div>
+         <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
+       <% end %>
+      </div>
+    </div>
+  </div>
+</div>

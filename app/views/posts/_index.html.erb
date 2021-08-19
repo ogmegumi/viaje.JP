@@ -1,41 +1,67 @@
-  <% @posts.each do |posts| %>
-    <div class="dropdown dropright ml-auto">
-     <% if posts.user == current_user %>
-       <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-ellipsis-h"></i>
-       </button>
-       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <%= link_to "削除", post_path(posts), method: :delete, class:"dropdown-item btn" %>
-        <%= link_to "編集", edit_post_path(posts), class:"dropdown-item btn" %>
-        <%= link_to "プロフィール編集", edit_user_path(posts.user), class:"dropdown-item btn" %>
-       </div>
-     <% end %>
-    </div>
-    
-     <%= link_to post_path(posts) do %>
-      <%= attachment_image_tag posts, :image, class:"card-img-top"; %>
-     <% end %>
-     <div class="card-body">
-      <div class="row">
-       <div class="col-2">
-        <%= attachment_image_tag posts.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class:"mt-3 rounded-circle"; %>
-       </div>
-       <div class="col-10">
-        <p class="card-title">
-         <%= link_to(post_path(posts.id), class:"text-dark") do %>
-          <strong><i class="fas fa-plane"></i><span><%= posts.destination %></span></strong>
-         <% end %>
-        </p>
-        <p><i class="fas fa-luggage-cart"></i><%= posts.nights %>泊<%= posts.days %>日</p>
-        <p><i class="fas fa-hand-holding-usd"></i><%= posts.budget %></p>
-        <p><i class="fas fa-flag"></i><%= posts.content %></p>
-        <span>
-         <div id="favorite-btn_<%= posts.id %>">
-          <%= render 'favorite/favorite-btn', posts: posts %>
-         </div>
-          <%= link_to "計画表はこちら", tasks_path %>
-          <%= link_to "#{posts.post_comments.count} コメント", post_path(posts.id) %>
-        </span>
-       </div>
+<% posts.each do |post| %>
+ <div class="col-md-8 col-md-2 mx-auto">
+    <div class="card-wrap">
+      <div class="card">
+        <div class="card-header align-items-center d-flex">
+           <%= attachment_image_tag post.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class:"mt-3 rounded-circle"; %>
+            <span>
+             <%= link_to user_path(post.user) do %>
+               <i class="fas fa-user"></i>
+               <%= post.user.name %>
+              <% end %>
+            </span>
+
+           <% if post.user == current_user %>
+             <div class="dropdown dropright ml-auto">
+               <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 <i class="fas fa-ellipsis-h"></i>
+               </button>
+               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                 <button class="dropdown-item" type="button"><%= link_to "削除", post_path(post), method: :delete %></button>
+                 <button class="dropdown-item" type="button"><%= link_to "編集", edit_post_path(post) %></button>
+               </div>
+              </div>
+           <% end %>
+        </div>
+        <%= attachment_image_tag post, :image, class:"card-img-top" %>
+        <div class="card-body">
+          <div class="row parts">
+            <span id="favorite-btn_<%= post.id %>">
+              <%= render "favorites/favorite-btn", post: post %>
+            </span>
+            <span id="comment-count_<%= post.id %>">
+               コメント数:<%= post.post_comments.count %>
+            </span>
+          </div>
+          <div>
+            <p class="cardtitle text-dark"><i class="fas fa-plane"></i>
+             <strong><%= post.destination %></strong>
+            </p>
+            <p class="card-text text-dark"><i class="fas fa-luggage-cart"></i>
+              <%= post.nights %>泊<%= post.days %>日
+            </p>
+            <p class="card-text text-dark"><i class="fas fa-hand-holding-usd"></i>
+             <%= post.budget %>
+            </p>
+            <p class="card-text text-dark">
+              <%= post.content %>
+            </p>
+              <%= link_to "計画表はこちら", tasks_path %>
+            <hr>
+            <div class="row parts">
+              <div id="comment">
+                <%= render "post_comments/comment", post: post %>
+              </div>
+              <span class="form">
+                 <%= form_with model:[post, @post_comment], remtote: true do |f| %>
+                   <%= f.text_area :comment, :size => "60x1", class: "form-control", placeholder: "コメントをここに" %>
+                   <%= f.submit "送信する", class: "d-flex btn btn-outline-secondary" %>
+                 <% end %>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
-  <% end %>
+    </div>
+  </div>
+<% end %>

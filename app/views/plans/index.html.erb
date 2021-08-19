@@ -1,0 +1,38 @@
+<div class="containar text-center">
+   <div class="row">
+     <div class="col-12 clearfix">
+       <div class="float-right mr-5">
+         <%= link_to new_plan_path, class: "btn btn-secondary", method: :get do %>
+           <i class="fas fa-plus-circle"></i>
+         <% end %>
+       </div>
+      </div>
+   </div>
+
+   <table class="table w-50 ml-auto mr-5">
+     <thead class="thead-dark">
+       <tr>
+         <th scope="col">時間</th>
+         <th scope="col">First</th>
+         <th>#</th>
+       </tr>
+     </thead>
+     <tbody>
+       <% @plans.each do |plan| %>
+         <tr>
+           <th scope="row">
+             <%= plan.start_time.strftime('%R') %><br>
+             |<br>
+             <%= plan.finish_time.strftime('%R') %>
+           </th>
+           <td class="h6"><br><%= plan.plan_content %><br></td>
+
+           <td>
+             <%= link_to "削除", plan_path(plan), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+             <%= link_to "編集", edit_plan_path(plan), class:"bbtn btn-outline-success btn-sm" %>
+           </td>
+          </tr>
+       <% end %>
+     </tbody>
+   </table>
+ </div>
