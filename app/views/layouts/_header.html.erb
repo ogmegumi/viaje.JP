@@ -12,6 +12,11 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
            <ul class="navbar-nav ml-auto">
              <% if user_signed_in? %>
+             <li class="nav-item">
+                 <%= link_to posts_path, class: 'nav-link text-dark btn btn-outline-secondary btn-lg mr-3' do %>
+                   <i class="fas fa-home"></i>
+                 <% end %>
+               </li>
                <li class="nav-item">
                  <%= link_to user_path(current_user.id), class: 'nav-link text-dark btn btn-outline-secondary btn-lg mr-3' do %>
                    <i class="fas fa-user"></i>

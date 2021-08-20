@@ -1,0 +1,63 @@
+<div class="containar">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">計画詳細</h5>
+      <div class="form-body p-4">
+       <% if @post_plan.errors.any? %>
+         <%= @post_plan.errors.count %>件のエラーが発生しました
+         <% @post_plan.errors.full_messages.each do |message| %>
+           <%= message %>
+         <% end %>
+       <% end %>
+       <%= form_with model: @post_plan ,url: post_path(@post_plan), local:true do |f| %>
+          <div class="input-group mb-3 mt-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text" aria-hidden="true"><i class="fas fa-history"></i></span>
+              </div>
+              <%= f.time_select(:start_time, {class:'select-date', id:"start-time", prompt:'--', time_separator: ':'}, ignore_data: true) %>
+          </div>
+          <div class="input-group mb-3 mt-4">
+              <div class="input-group-prepend">
+                 <span class="input-group-text" aria-hidden="true"><i class="fas fa-history"></i></span>
+              </div>
+              <%= f.time_select(:finish_time, {class:'select-date', id:"start-time", prompt:'--', time_separator: ':'}, ignore_data: true) %>
+          </div>
+          <div class="input-group mb-3 mt-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text" aria-hidden="true"><i class="fas fa-clipboard"></i></span>
+              </div>
+              <%= f.text_field :plan_content, class:"form-control", placeholder:"計画行動" %>
+          </div>
+            <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
+       <% end %>
+      </div>
+    </div>
+     <div class="col-md-5">
+        <table class="table w-50 ml-auto mr-5">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">時間</th>
+              <th scope="col">First</th>
+              <th>#</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @post_plans.each do |plan| %>
+              <tr>
+                <th scope="row">
+                  <%= plan.start_time.strftime('%R') %><br>
+                  |<br>
+                  <%= plan.finish_time.strftime('%R') %>
+                </th>
+                <td class="h6"><br><%= plan.plan_content %><br></td>
+                <td>
+                  <%= link_to "削除", plan_path(plan), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+                  <%= link_to "編集", edit_plan_path(plan), class:"bbtn btn-outline-success btn-sm" %>
+                </td>
+              </tr>
+           <% end %>
+          </tbody>
+        </table>
+     </div>
+   </div>
+ </div>
