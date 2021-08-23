@@ -17,7 +17,9 @@
         </div>
       </div>
       <div class="card mw-100 card-body border-info rounded mb-3">
-       <%= post_comment.comment %>
+       <div id="string">
+         <%= post_comment.comment %>
+       </div>
       </div>
   <% end %>
 <p>
@@ -33,7 +35,7 @@
         <div class="row d-flex align-items-center pb-3">
           <div class="col">
             <%= attachment_image_tag post.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class:"mt-3 rounded-circle"; %>
-             <%= link_to user_path(post_comment_user), class: "user_#{post_comment_user.id}" do %>
+             <%= link_to user_path(post.user), class: "user_#{post.user.id}" do %>
                 <%= post_comment.user.name %>
               <% end %>
           </div>
@@ -46,7 +48,9 @@
         </div>
       </div>
       <div class="card mw-100 card-body border-info rounded mb-3">
-       <%= post_comment.comment %>
+       <div id="string">
+         <%= post_comment.comment %>
+       </div>
       </div>
   <% end %>
 </div>

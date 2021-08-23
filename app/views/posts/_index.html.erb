@@ -46,16 +46,16 @@
             <p class="card-text text-dark ml-3">
               <%= post.content %>
             </p>
-              <%= link_to "計画表はこちら", post_path %>
+              <%= link_to "計画表はこちら", plans_path(id: post.id) %>
             <hr>
             <div class="row d-block">
-              <div id="comment">
+              <div id="comment_<%= post.id %>">
                 <%= render "post_comments/comment", post: post %>
               </div>
-              <span class="form">
+              <span id="form_<%= post.id %>">
                  <%= form_with model:[post, @post_comment], remtote: true do |f| %>
                    <%= f.text_area :comment, :size => "60x1", class: "form-control", placeholder: "コメントをここに" %>
-                   <%= f.submit "送信する", class: "d-flex btn btn-outline-secondary" %>
+                   <%= f.submit "送信する", class: "d-flex btn btn-outline-secondary", id: "submit" %>
                  <% end %>
               </span>
             </div>

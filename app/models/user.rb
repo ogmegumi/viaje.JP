@@ -17,7 +17,10 @@ class User < ApplicationRecord
   # 【class_name: "Relationship"】は省略可能
   has_many :followings, through: :relationships, source: :followed
   # 与フォロー関係を通じて参照→
-
+  
+  validates :name, length: { minimum: 2 }, presence: true
+  validates :password, length: { in: 6..20 }, presence: true
+  
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
@@ -26,5 +29,13 @@ class User < ApplicationRecord
   end
   def following?(user)
     followings.include?(user)
+  end
+
+  def self.looks(searches, words)
+    if searches == "perfect_match"
+      @user = User.where("name LIKE ?", "#{words}")
+    else
+      @user = User.where("name LIKE ?", "%#{words}%")
+    end
   end
 end

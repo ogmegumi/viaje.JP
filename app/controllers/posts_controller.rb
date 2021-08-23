@@ -7,12 +7,16 @@ class PostsController < ApplicationController
   end
 
   def new
-   @post = Post.new
+    @post = Post.new
   end
-  
+
   def show
     @post = Post.find(params[:id])
-    @post = Post.new
+    @plans = @post.plans
+    @post_comments = @post.post_comments
+
+    @plan = Plan.new
+    @post_comment = PostComment.new
   end
 
   def create
@@ -23,6 +27,17 @@ class PostsController < ApplicationController
     else
        render :new
     end
+    # もしpostでplanを引っ張ってきた場合のコード
+    # @post = Post.new(post_params)
+    # if @post.save
+    #   @plan = Plan.new(plan_params)
+    #   @plan.post_id = @post.id
+    #   if @plans.save
+    #     redirect_to posts_path
+    #   else
+    #     render :new
+    #   end
+    # end
   end
 
   def destroy
@@ -46,4 +61,8 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:destination, :days, :nights, :image, :content, :budget)
   end
+
+  # def plan_params
+  #   params.require(:plan).permit(~~~~~)
+  # end
 end

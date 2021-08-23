@@ -1,4 +1,13 @@
-<h3>ユーザー詳細ページ</h3>
-<div class="d-flex mt-4 shadow-lg">
-  <%= render "users/list", user: current_user %>
+<div class="containar">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>MY PAGE</h3>
+         <%= render "users/list", user: current_user %>
+    </div>
+    <div class="col">
+      <%= link_to post_path(@user.posts) do %>
+        <%= attachment_image_tag @post, :image, class:"card-img-top" %>
+      <% end %>
+    </div>
+  </div>
 </div>

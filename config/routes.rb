@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   }
   devise_for :users
   root 'homes#top'
+  get 'search' => 'searches#search'
+  
   resources :memos
   resources :users do
    # ————フォロワー機能————

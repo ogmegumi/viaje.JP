@@ -8,9 +8,6 @@ class CreatePost < ActiveRecord::Migration[5.2]
       t.string     :destination,  null: false
       t.integer    :days,         null: false
       t.integer    :nights,       null: false
-      t.text       :plan_content, null: false
-      t.datetime   :start_time,   null: false
-      t.datetime   :finish_time,  null: false
       t.timestamps null: false
     end
   end

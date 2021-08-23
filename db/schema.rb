@@ -43,6 +43,10 @@ ActiveRecord::Schema.define(version: 2021_08_18_043416) do
     t.text "plan_content", null: false
     t.datetime "start_time", null: false
     t.datetime "finish_time", null: false
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -65,9 +69,6 @@ ActiveRecord::Schema.define(version: 2021_08_18_043416) do
     t.string "destination", null: false
     t.integer "days", null: false
     t.integer "nights", null: false
-    t.text "plan_content", null: false
-    t.datetime "start_time", null: false
-    t.datetime "finish_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
