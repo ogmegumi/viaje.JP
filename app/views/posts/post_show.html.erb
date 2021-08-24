@@ -45,7 +45,7 @@
             <p class="card-text text-dark ml-3">
               <%= @post.content %>
             </p>
-              <%= link_to "計画表はこちら", plans_path(id: @post.id) %>
+              <%= link_to "計画表はこちら", post_path(@post.id) %>
             <hr>
             <div class="row d-block">
               <div id="comment_<%= @post.id %>">

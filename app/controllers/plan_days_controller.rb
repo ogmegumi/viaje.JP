@@ -1,10 +1,10 @@
 class PlanDaysController < ApplicationController
 
-  def index
-    @plan_days = PlanDay.all
-    @plan = Plan.all
-    @post = Post.all
-  end
+  # def index  !!renderへ変更!!
+  #   @plan_days = PlanDay.all
+  #   @plan = Plan.all
+  #   @post = Post.all
+  # end
 
   def new
     @post = Post.find(params[:post_id])
@@ -21,7 +21,7 @@ class PlanDaysController < ApplicationController
     @plan_day = PlanDay.new(day_params)
     @plan_day.post_id = @post.id
     if @plan_day.save
-      redirect_to post_plan_days_path(@plan_day.post_id)
+      redirect_to post_path(@plan_day.post_id)
     else
       render :new
     end

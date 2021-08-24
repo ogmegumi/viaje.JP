@@ -111,10 +111,10 @@ ActiveRecord::Schema.define(version: 2021_08_23_003909) do
 
   create_table "tasks", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "category", null: false
     t.text "belongings", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 

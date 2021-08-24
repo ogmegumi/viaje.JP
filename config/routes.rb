@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   resources :posts do
     member do
       get 'post_show' => 'posts#post_show'
+      patch 'post_show' => 'posts#post_show'
+      delete 'post_show' => 'posts#post_show'
+      post 'post_show' => 'posts#post_show'
     end
     resources :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
