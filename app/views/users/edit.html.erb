@@ -4,18 +4,26 @@
       <h5 class="text-dark bg-light p-4 mb-0">プロフィール編集</h5>
       <div class="form-body p-4">
        <% if @user.errors.any? %>
-         <%= @user.errors.count %>件のエラーが発生しました
-         <% @user.errors.full_messages.each do |message| %>
-           <%= message %>
-         <% end %>
+         <div id="error_explanation">
+           <%= @user.errors.count %>件のエラーが発生しました
+           <% @user.errors.full_messages.each do |message| %>
+             <%= message %>
+           <% end %>
+         </div>
        <% end %>
-       <%= form_with model:@user, local:true do |f| %>
+       <%= form_with model: @user, local:true do |f| %>
          <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "noimage.png", size:"300x300"%>
          <div class="input-group mb-3 mt-4">
            <div class="input-group-prepend">
-              <span class="input-group-text" aria-hidden="true">name</span>
+              <span class="input-group-text" aria-hidden="true">user_name</span>
            </div>
             <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
+         </div>
+         <div class="input-group mb-3 mt-4">
+           <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true">自己紹介</span>
+           </div>
+            <%= f.text_field :introduction, autofocus: true, id:"inputintroduction", placeholder:"自己紹介"%>
          </div>
           <div class="input-group mb-3 mt-4">
              <div class="input-group-prepend">

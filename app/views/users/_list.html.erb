@@ -7,11 +7,15 @@
   <tr>
      <tr>
      <th>follows</th>
-     <th><%= link_to user.followings.count, relationships_following_path(user), class: "user_#{user.id}" %></th>
+     <th><%= link_to user.followings.count, user_followings_path(user), class: "user_#{user.id}" %></th>
   </tr>
   <tr>
      <th>followers</th>
-     <th><%= link_to user.followers.count, relationships_follower_path(user), class: "user_#{user.id}" %></th>
+     <th><%= link_to user.followers.count, user_followers_path(user), class: "user_#{user.id}" %></th>
+  </tr>
+  <tr>
+    <th>自己紹介文</th>
+    <th><%= user.introduction %></th>
   </tr>
 
   <tr>

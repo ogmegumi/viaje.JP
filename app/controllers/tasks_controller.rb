@@ -7,16 +7,18 @@ class TasksController < ApplicationController
     @tasks4 = Task.where(category: "task4")
     @tasks5 = Task.where(category: "task5")
     @tasks6 = Task.where(category: "task6")
-  end
-
-  def new
     @task = Task.new
+    @user = current_user
+    @user = @task.user
   end
 
   def create
     @task = Task.new(task_params)
-    @task.save
-    redirect_to tasks_path
+    @task.user_id = current_user.id
+    if @task.save
+       flash[:notice] = "You have created Task successfully"
+       redirect_to user_tasks_path
+    end
   end
 
   def edit
@@ -25,8 +27,10 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-    @task.update(task_params)
-    redirect_to tasks_path(@task)
+    if @task.update(task_params)
+       flash[:notice] = "You have updateted Task successfully"
+       redirect_to tasks_path(@task)
+    end
   end
 
   def destroy
@@ -37,7 +41,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:brlongings, :category)
+    params.require(:task).permit(:belongings, :category)
   end
 
 end

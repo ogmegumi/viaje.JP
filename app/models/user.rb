@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :memos,          dependent: :destroy
   has_many :post_connments, dependent: :destroy
   has_many :favorites,      dependent: :destroy
+  has_many :tasks,          dependent: :destroy
+  
 
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
@@ -17,10 +19,10 @@ class User < ApplicationRecord
   # 【class_name: "Relationship"】は省略可能
   has_many :followings, through: :relationships, source: :followed
   # 与フォロー関係を通じて参照→
-  
+
   validates :name, length: { minimum: 2 }, presence: true
-  validates :password, length: { in: 6..20 }, presence: true
-  
+  validates :introduction, length: { maximum: 50 }
+
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end

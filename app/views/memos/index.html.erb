@@ -6,8 +6,9 @@
       <div class="text-center border-bottom h-3", style="height: 20%;"><br>
         <%= check_box_tag :check %>
         <%= label_tag :check, memo.memo %>
-          <%= link_to "削除",memo_path(memo), method: :delete, class:"btn btn-outline-danger btn-sm" %>
-          <%= link_to "編集", edit_memo_path(memo), class:"bbtn btn-outline-success btn-sm" %><br>
+        
+          <%= link_to "削除", user_memo_path(memo.user, memo.id), method: :delete, class:"btn btn-outline-danger btn-sm" %>
+          <%= link_to "編集", edit_user_memo_path(memo.user, memo.id), class:"bbtn btn-outline-success btn-sm" %><br>
       </div>
      <% end %>
     </div>
@@ -20,7 +21,7 @@
            <%= message %>
          <% end %>
        <% end %>
-       <%= form_with model: @memo, local:true do |f| %>
+       <%= form_with model: @memo, url: user_memos_path(current_user), method: :post, local:true do |f| %>
          <div class="input-group mb-3 mt-4">
            <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-suitcase"></i></span>

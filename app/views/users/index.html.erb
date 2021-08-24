@@ -19,6 +19,7 @@
                <td><%= link_to user.name, user_path(user), class: "user_#{user.id}" %></td>
                <td><%= user.followings.count %>人</td>
                <td><%= user.followers.count %>人</td>
+               <td><%= user.introduction %></td>
                <% if current_user.following?(user) %>
                  <td><%= link_to "Unfollow", user_relationships_path(user.id), method: :delete, class:"btn btn-outline-secondary" %></td>
                <% else %>

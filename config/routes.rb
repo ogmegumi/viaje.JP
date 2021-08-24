@@ -7,9 +7,11 @@ Rails.application.routes.draw do
   devise_for :users
   root 'homes#top'
   get 'search' => 'searches#search'
-  
-  resources :memos
+
+
   resources :users do
+    resources :memos
+    resources :tasks, except: :show
    # ————フォロワー機能————
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
@@ -21,17 +23,18 @@ Rails.application.routes.draw do
     end
  end
 
-  resources :relationships, only: [:create, :destroy]
-  get 'relationships/following'
-  get 'relationships/follower'
-  resources :tasks, except: :show
-  resources :plans, except: :show
   resources :posts do
+    member do
+      get 'post_show' => 'posts#post_show'
+    end
     resources :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
+    resources :plan_days, only: [:create, :destroy, :new, :edit, :index, :show] do
+      resources :plans, except: [:show, :index]
+    end
   end
   namespace :admin do
-    resources :tasks
+    resources :tasks, except: [:show]
     resources :users, only: [:index, :show, :edit, :update ]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -1,13 +1,74 @@
+<div class="cards-container">
+
+  <div class="card card-one">
+    <header>
+      <div class="avatar">
+        <%= attachment_image_tag(@user, :profile_image, :fill, 100, 100, class:"mt-3 rounded-circle", fallback: "noimage.png", size:"100x100") %>
+      </div>
+    </header>
+
+    <h3><%= @user.name %></h3>
+    <div class="desc">
+      <%= @user.introduction %>
+    </div>
+    <div class="contacts">
+      <i class="far fa-comment-dots"></i><%= @user.posts.count %>
+      follows<%= link_to @user.followings.count, user_followings_path(@user), class: "user_#{@user.id}" %>
+      followers<%= link_to @user.followers.count, user_followers_path(@user), class: "user_#{@user.id}" %>
+      <% if current_user.following?(@user) %>
+        <%= link_to "Unfollow", user_relationships_path(@user.id), method: :delete, class:"btn btn-outline-secondary" %>
+      <% else %>
+        <%= link_to "Follow", user_relationships_path(@user.id), method: :post, class:"btn btn-outline-secondary" %>
+      <% end %>
+      <div class="clear"></div>
+    </div>
+
+    <footer>
+      <%= link_to "memo", user_memos_path(@user.id), method: :get, class:"fas fa-book-open" %>
+      <a href=""><i class="fa fa-linkedin"></i></a>
+      <a href=""><i class="fa fa-twitter"></i></a>
+      <a href=""><i class="fa fa-instagram"></i></a>
+    </footer>
+  </div>
+
+
+  <header class="profile d-flex mr-5">
+    <span class="header-profile">
+      <div class="username h4">
+       <%= @user.name %>
+      </div>
+      <div class="usereditbtn">
+        <%= link_to '',edit_user_path(@user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{@user.id}" %>
+      </div>
+    </span>
+ </header>
+
+
 <div class="containar">
   <div class="row">
-    <div class="col-md-12">
-      <h3>MY PAGE</h3>
-         <%= render "users/list", user: current_user %>
+    <div class="col-md-10 text-center">
     </div>
-    <div class="col">
-      <%= link_to post_path(@user.posts) do %>
-        <%= attachment_image_tag @post, :image, class:"card-img-top" %>
-      <% end %>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label class="btn btn-outline-secondary active">
+        <%#= link_to , memos_path(type="radio" name="options" id="option1" autocomplete="off" checked %>> Active
+      </label>
+      <label class="btn btn-secondary">
+        <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+      </label>
+      <label class="btn btn-outline-secondary">
+        <input type="radio" name="options" id="option3" autocomplete="off"> Radio
+      </label>
     </div>
+    <div class="row d-flex">
+        <% @posts.each do |post| %>
+          <div class="col">
+            <span class="img_container">
+              <%= link_to post_show_post_path(post) do %>
+                <%= attachment_image_tag post, :image, class:"card-img-top", size: "200x200" %>
+              <% end %>
+            </span>
+          </div>
+        <% end %>
+   </div>
   </div>
 </div>
