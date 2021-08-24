@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_18_043416) do
+ActiveRecord::Schema.define(version: 2021_08_23_003909) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -34,21 +34,32 @@ ActiveRecord::Schema.define(version: 2021_08_18_043416) do
   end
 
   create_table "memos", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "memo", null: false
+    t.index ["user_id"], name: "index_memos_on_user_id"
+  end
+
+  create_table "plan_days", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.datetime "days", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_plan_days_on_post_id"
   end
 
   create_table "plans", force: :cascade do |t|
+    t.integer "plan_day_id", null: false
     t.text "plan_content", null: false
     t.datetime "start_time", null: false
     t.datetime "finish_time", null: false
     t.string "address"
     t.float "latitude"
     t.float "longitude"
-    t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["plan_day_id"], name: "index_plans_on_plan_day_id"
   end
 
   create_table "post_comments", force: :cascade do |t|
@@ -99,10 +110,12 @@ ActiveRecord::Schema.define(version: 2021_08_18_043416) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.text "brlongings", null: false
+    t.integer "user_id", null: false
+    t.string "category", null: false
+    t.text "belongings", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "category"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

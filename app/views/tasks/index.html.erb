@@ -1,6 +1,6 @@
 <div class="containar mx-auto w-50">
   <div class="row">
-    <div class="col-3 ml-auto">
+    <div class="col-md-7">
       <%= link_to new_task_path, class: "btn btn-primary", method: :get do %>
        <i class="fas fa-plus-circle"></i>
       <% end %>
@@ -10,9 +10,9 @@
     <% @tasks1.each do |task| %>
       <div class="index-item mb-20">
         <%= check_box_tag :check %>
-        <%= label_tag :check, task.brlongings %>
-    　　    <%= link_to "削除", task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
-      　　  <%= link_to "編集", edit_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
+        <%= label_tag :check, task.belongings %>
+        <%= link_to "削除", user_task_path(task.user, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+        <%= link_to "編集", edit_user_task_path(task.user, task.id), class:"bbtn btn-outline-success btn-sm" %>
       </div>
     <% end %>
 
@@ -20,44 +20,49 @@
     <% @tasks2.each do |task| %>
       <div class="index-item mb-20">
         <%= check_box_tag :check %>
-        <%= label_tag :check, task.brlongings %>
-        <%= link_to "削除", task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
-        <%= link_to "編集", edit_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
+        <%= label_tag :check, task.belongings %>
+        <%= link_to "削除", user_task_path(task.user, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+        <%= link_to "編集", edit_user_task_path(task.user, task.id), class:"bbtn btn-outline-success btn-sm" %>
       </div>
     <% end %>
   <div class="category bg-success">電子機器</div>
     <% @tasks3.each do |task| %>
       <div class="index-item mb-20">
         <%= check_box_tag :check %>
-        <%= label_tag :check, task.brlongings %>
-        <%= link_to "削除", task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
-        <%= link_to "編集", edit_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
+        <%= label_tag :check, task.belongings %>
+        <%= link_to "削除", user_task_path(task.user, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+        <%= link_to "編集", edit_user_task_path(task.user, task.id), class:"bbtn btn-outline-success btn-sm" %>
       </div>
     <% end %>
   <div class="category bg-success">洗面用具</div>
     <% @tasks4.each do |task| %>
       <div class="index-item mb-20">
         <%= check_box_tag :check %>
-        <%= label_tag :check, task.brlongings %>
-        <%= link_to "削除", task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
-        <%= link_to "編集", edit_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
+        <%= label_tag :check, task.belongings %>
+        <%= link_to "削除", user_task_path(task.user, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+        <%= link_to "編集", edit_user_task_path(task.user, task.id), class:"bbtn btn-outline-success btn-sm" %>
       </div>
     <% end %>
   <div class="category bg-success">衣類</div>
     <% @tasks5.each do |task| %>
       <div class="index-item mb-20">
         <%= check_box_tag :check %>
-        <%= label_tag :check, task.brlongings %>
-        <%= link_to "削除", task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
-        <%= link_to "編集", edit_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
+        <%= label_tag :check, task.belongings %>
+        <%= link_to "削除", user_task_path(task.user, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+        <%= link_to "編集", edit_user_task_path(task.user, task.id), class:"bbtn btn-outline-success btn-sm" %>
       </div>
     <% end %>
   <div class="category bg-success">その他</div>
     <% @tasks6.each do |task| %>
       <div class="index-item mb-20">
         <%= check_box_tag :check %>
-        <%= label_tag :check, task.brlongings %>
-        <%= link_to "削除", task_path(task), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
-        <%= link_to "編集", edit_task_path(task), class:"bbtn btn-outline-success btn-sm" %>
+        <%= label_tag :check, task.belongings %>
+        <%= link_to "削除", user_task_path(task.user, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+        <%= link_to "編集", edit_user_task_path(task.user, task.id), class:"bbtn btn-outline-success btn-sm" %>
       </div>
     <% end %>
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">持ち物リスト投稿</h5>
+      <div class="form-body p-4">
+        <%= render "new", task: @task %>
+      </div>

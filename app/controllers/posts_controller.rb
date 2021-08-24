@@ -4,6 +4,7 @@ class PostsController < ApplicationController
     @posts = Post.all.order(created_at: :desc)
     @post_comments = PostComment.all
     @post_comment = PostComment.new
+    @user = current_user
   end
 
   def new
@@ -12,22 +13,29 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @plans = @post.plans
+    @plan_day = PlanDay.new
+    @user = @post.user
+    @plan_day = @post.plan_days
+    # @post = @post.plan
     @post_comments = @post.post_comments
-
-    @plan = Plan.new
     @post_comment = PostComment.new
+  end
+
+  def post_show
+    @post = Post.find(params[:id])
+    @user = @post.user
   end
 
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
+       flash[:notice] = "You have created successfully."
        redirect_to posts_path
     else
        render :new
     end
-    # もしpostでplanを引っ張ってきた場合のコード
+    # もしpostでplanも同時に場合のコード
     # @post = Post.new(post_params)
     # if @post.save
     #   @plan = Plan.new(plan_params)
@@ -52,8 +60,10 @@ class PostsController < ApplicationController
 
   def update
    @post = Post.find(params[:id])
-   @post.update(post_params)
-   redirect_to posts_path(@posts)
+   if @post.update(post_params)
+     flash[:notice] = "You have updated successfully."
+     redirect_to posts_path(@posts)
+   end
   end
 
   private

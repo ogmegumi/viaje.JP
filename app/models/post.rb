@@ -1,10 +1,10 @@
 class Post < ApplicationRecord
   attachment :image
   belongs_to :user
+  # has_one  :plan
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :plans, dependent: :destroy
-
+  has_many :plan_days, dependent: :destroy
 
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
