@@ -9,7 +9,7 @@
            <%= message %>
          <% end %>
        <% end %>
-       <%= form_with model: @plan ,url: plans_path(@plan), local:true do |f| %>
+       <%= form_with model: @plan, url: plans_path(@plan, id: params[:id]), local:true do |f| %>
        <div class="input-group mb-3 mt-4">
            <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-history"></i></span>
@@ -26,7 +26,8 @@
            <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-clipboard"></i></span>
            </div>
-           <%= f.text_field :plan_content, class:"form-control", placeholder:"計画行動" %>
+           <%= f.text_field :plan_content, class:"form-control", placeholder:"(例)1・計画行動" %>
+           <%= f.hidden_field :post_id, value: params[:id] %>
        </div>
          <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
        <% end %>

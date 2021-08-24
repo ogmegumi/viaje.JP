@@ -1,7 +1,11 @@
 class PlansController < ApplicationController
 
   def index
-    @plans = Plan.all
+    @post = Post.find(params[:id])
+    @plans = Plan.where(post_id: params[:id])
+    @plan = Plan.new
+    @post_comments = PostComment.all
+    @post_comment = PostComment.new
   end
 
   def new
@@ -14,29 +18,37 @@ class PlansController < ApplicationController
 
   def create
     @plan = Plan.new(plan_params)
-    @plan.user_id = current_user.id
     if @plan.save
-      redirect_to plans_path
+      redirect_to plans_path(id: @plan.post_id)
     else
       render :new
     end
   end
+  
+  # def create
+  #   @day = Day.new(day_params)
+  #   if @day.save
+  #     redirect_to plans_path(id: @day.post_id)
+  #   else
+  #     render :new
+  #   end
+  # end
 
   def update
     @plan = Plan.find(params[:id])
     @plan.update(plan_params)
-    redirect_to plans_path(@plan)
+    redirect_to plans_path(id: @plan.post_id)
   end
 
   def destroy
     @plan = Plan.find(params[:id])
     @plan.destroy
-    redirect_to plans_path
+    redirect_to plans_path(id: @plan.post_id)
   end
 
   private
   def plan_params
-    params.require(:plan).permit(:start_time, :finish_time, :plan_content)
+    params.require(:plan).permit(:start_time, :finish_time, :plan_content, :post_id)
   end
 
 end
