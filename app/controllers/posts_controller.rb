@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @plan_day = PlanDay.new
     @user = @post.user
-    @plan_day = @post.plan_days
+    @plan_days = @post.plan_days
     # @post = @post.plan
     @post_comments = @post.post_comments
     @post_comment = PostComment.new
@@ -24,6 +24,8 @@ class PostsController < ApplicationController
   def post_show
     @post = Post.find(params[:id])
     @user = @post.user
+    @post_comments = @post.post_comments
+    @post_comment = PostComment.new
   end
 
   def create

@@ -11,7 +11,7 @@
            <% end %>
          </div>
        <% end %>
-       <%= form_with model: @task, local:true do |f| %>
+       <%= form_with model: @task,url: user_task_path(current_user), local:true do |f| %>
        <div class="input-group mb-3 mt-4">
            <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-suitcase"></i></span>
@@ -22,7 +22,7 @@
            <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-suitcase"></i></span>
            </div>
-           <%= f.text_field :brlongings, class:"form-control", placeholder:"持ち物" %>
+           <%= f.text_field :belongings, class:"form-control", placeholder:"持ち物" %>
          </div>
          <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
        <% end %>

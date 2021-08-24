@@ -9,7 +9,7 @@ class TasksController < ApplicationController
     @tasks6 = Task.where(category: "task6")
     @task = Task.new
     @user = current_user
-    @user = @task.user
+    @user = @task.user_id
   end
 
   def create
@@ -29,14 +29,14 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     if @task.update(task_params)
        flash[:notice] = "You have updateted Task successfully"
-       redirect_to tasks_path(@task)
+       redirect_to user_tasks_path
     end
   end
 
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to tasks_path
+    redirect_to user_tasks_path
   end
 
   private

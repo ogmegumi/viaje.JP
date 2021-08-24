@@ -24,14 +24,14 @@ class MemosController < ApplicationController
     @memo = Memo.find(params[:id])
     if @memo.update(memo_params)
        flash[:notice] = "You have updateed Task successfully"
-       redirect_to memos_path
+       redirect_to user_memos_path
     end
   end
 
   def destroy
     @memo = Memo.find(params[:id])
     @memo.destroy
-    redirect_to memos_path
+    redirect_to user_memos_path
   end
 
   private

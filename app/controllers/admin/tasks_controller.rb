@@ -37,7 +37,7 @@ class Admin::TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:brlongings, :category)
+    params.require(:task).permit(:belongings, :category)
   end
 
 end

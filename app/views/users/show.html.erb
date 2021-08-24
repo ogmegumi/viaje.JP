@@ -1,67 +1,52 @@
-<div class="cards-container">
+<div class="container">
 
-  <div class="card card-one">
-    <header>
-      <div class="avatar">
-        <%= attachment_image_tag(@user, :profile_image, :fill, 100, 100, class:"mt-3 rounded-circle", fallback: "noimage.png", size:"100x100") %>
-      </div>
-    </header>
-
-    <h3><%= @user.name %></h3>
-    <div class="desc">
-      <%= @user.introduction %>
-    </div>
-    <div class="contacts">
-      <i class="far fa-comment-dots"></i><%= @user.posts.count %>
-      follows<%= link_to @user.followings.count, user_followings_path(@user), class: "user_#{@user.id}" %>
-      followers<%= link_to @user.followers.count, user_followers_path(@user), class: "user_#{@user.id}" %>
-      <% if current_user.following?(@user) %>
-        <%= link_to "Unfollow", user_relationships_path(@user.id), method: :delete, class:"btn btn-outline-secondary" %>
-      <% else %>
-        <%= link_to "Follow", user_relationships_path(@user.id), method: :post, class:"btn btn-outline-secondary" %>
-      <% end %>
-      <div class="clear"></div>
-    </div>
-
-    <footer>
-      <%= link_to "memo", user_memos_path(@user.id), method: :get, class:"fas fa-book-open" %>
-      <a href=""><i class="fa fa-linkedin"></i></a>
-      <a href=""><i class="fa fa-twitter"></i></a>
-      <a href=""><i class="fa fa-instagram"></i></a>
-    </footer>
-  </div>
-
-
-  <header class="profile d-flex mr-5">
-    <span class="header-profile">
-      <div class="username h4">
-       <%= @user.name %>
-      </div>
-      <div class="usereditbtn">
-        <%= link_to '',edit_user_path(@user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{@user.id}" %>
-      </div>
-    </span>
- </header>
-
-
-<div class="containar">
   <div class="row">
-    <div class="col-md-10 text-center">
+    <div class="col-md-5">
+      <div class="avatar">
+        <%= attachment_image_tag(@user, :profile_image, :fill, 200, 200, class:"mt-3 rounded-circle", fallback: "noimage.png", size:"200x200") %>
+      </div>
     </div>
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-      <label class="btn btn-outline-secondary active">
-        <%#= link_to , memos_path(type="radio" name="options" id="option1" autocomplete="off" checked %>> Active
-      </label>
-      <label class="btn btn-secondary">
-        <input type="radio" name="options" id="option2" autocomplete="off"> Radio
-      </label>
-      <label class="btn btn-outline-secondary">
-        <input type="radio" name="options" id="option3" autocomplete="off"> Radio
-      </label>
+
+    <div class="col-md-7 mx-auto">
+      <div class="user_name">
+        <h3><%= @user.name %></h3>
+      </div>
+      <div class="info">
+        <i class="far fa-comment-dots mr-3"><%= @user.posts.count %></i>
+        follows<%= link_to @user.followings.count, user_followings_path(@user), class: "user_#{@user.id} mr-3" %>
+        followers<%= link_to @user.followers.count, user_followers_path(@user), class: "user_#{@user.id}" %>
+      </div>
+      <span class="follow-btn">
+        <% if current_user.following?(@user) %>
+          <%= link_to "Unfollow", user_relationships_path(@user.id), method: :delete, class:"btn btn-outline-secondary mt-3 mb-3 d-block" %>
+        <% else %>
+          <%= link_to "Follow", user_relationships_path(@user.id), method: :post, class:"btn btn-outline-info mt-3 mb-3 d-block" %>
+        <% end %>
+      </span>
+      <div class="introduction">
+        <h6>自己紹介文</h6>
+          <%= @user.introduction %>
+      </div>
     </div>
+  </div>
+</div>
+<div class="container-fluid"><!--<footer>-->
+      <div class="row">
+          <div class="col text-center">
+              <%= link_to "memo", user_memos_path(@user.id), method: :get, class:"btn btn-outline-secondary d-block fas fa-book-open" %>
+          </div>
+          <div class="col text-center">
+              <%= link_to "忘れ物管理", user_tasks_path(@user.id), method: :get, class:"btn btn-outline-secondary d-block far fa-check-circle" %>
+          </div>
+          <div class="col text-center">
+              <%= link_to 'edit',edit_user_path(@user),class: "btn btn-outline-secondary d-block fas fa-user-cog edit_user_#{@user.id}" %>
+          </div>
+      </div>
+</div>
+  <div class="container mt-5">
     <div class="row d-flex">
         <% @posts.each do |post| %>
-          <div class="col">
+          <div class="col-md-4">
             <span class="img_container">
               <%= link_to post_show_post_path(post) do %>
                 <%= attachment_image_tag post, :image, class:"card-img-top", size: "200x200" %>
@@ -69,6 +54,5 @@
             </span>
           </div>
         <% end %>
-   </div>
+    </div>
   </div>
-</div>
