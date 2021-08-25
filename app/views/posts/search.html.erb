@@ -1,4 +1,20 @@
-<% posts.each do |post| %>
+<div class="tags-post text-center">
+    <h2>投稿一覧</h2>
+     絞り込んだタグ名
+     <div class="tag-name h4">
+      <strong><%= @tag.name %></strong>
+    </div>
+    <div class="tag-list">
+      <% @tag_list.each do |list| %>
+       <span>
+          <%= link_to list.name, tag_posts_path(tag_id: list.id) %>
+          (<%= list.posts.count %>)
+       </span>
+     <% end %>
+   </div>            
+</div>
+
+<% @posts.each do |post| %>
  <div class="col-md-8 col-md-2 mx-auto">
     <div class="card-wrap">
       <div class="card">
@@ -25,12 +41,6 @@
         <%= attachment_image_tag post, :image, class:"card-img-top" %>
         <div class="card-body">
           <div class="row ml-3 mb-3">
-            <span id="favorite-btn_<%= post.id %>">
-              <%= render "favorites/favorite-btn", post: post %>
-            </span>
-            <span id="comment-count_<%= post.id %>">
-               コメント数:<%= post.post_comments.count %>
-            </span>
             <!--------フォローユーザーのみ遷移可能---------->
             <% if current_user.following?(post.user) %>
               <span id="plan_show">
@@ -60,21 +70,10 @@
               <% end %>
             </div>
             <hr>
-            <div class="row d-block">
-              <div id="comment_<%= post.id %>">
-                <%= render "post_comments/comment", post: post %>
-              </div>
-              <span id="form_<%= post.id %>">
-                 <%= form_with model:[post, @post_comment], remtote: true do |f| %>
-                   <%= f.text_area :comment, :size => "60x1", class: "form-control", placeholder: "コメントをここに" %>
-                   <%= f.submit "送信する", class: "d-flex btn btn-outline-secondary", id: "submit" %>
-                 <% end %>
-              </span>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 <% end %>
-
+            

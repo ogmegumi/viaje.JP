@@ -6,9 +6,10 @@
       <div class="text-center border-bottom h-3", style="height: 20%;"><br>
         <%= check_box_tag :check %>
         <%= label_tag :check, memo.memo %>
-        
+        <% if memo.user == current_user %>
           <%= link_to "削除", user_memo_path(memo.user, memo.id), method: :delete, class:"btn btn-outline-danger btn-sm" %>
           <%= link_to "編集", edit_user_memo_path(memo.user, memo.id), class:"bbtn btn-outline-success btn-sm" %><br>
+        <% end %>
       </div>
      <% end %>
     </div>

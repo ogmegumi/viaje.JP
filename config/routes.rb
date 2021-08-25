@@ -22,6 +22,10 @@ Rails.application.routes.draw do
       patch 'withdraw' => 'users#withdraw'
     end
  end
+ 
+ resources :tags do
+   get 'posts', to: 'posts#search'
+ end
 
   resources :posts do
     member do

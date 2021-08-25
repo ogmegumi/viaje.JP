@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_23_003909) do
+ActiveRecord::Schema.define(version: 2021_08_25_063832) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -31,6 +31,11 @@ ActiveRecord::Schema.define(version: 2021_08_23_003909) do
     t.integer "post_id", null: false
     t.index ["post_id"], name: "index_favorites_on_post_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "item_tags", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "memos", force: :cascade do |t|
@@ -94,19 +99,17 @@ ActiveRecord::Schema.define(version: 2021_08_23_003909) do
 
   create_table "tags", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "tags_relanionship_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tags_relanionship_id"], name: "index_tags_on_tags_relanionship_id"
   end
 
   create_table "tags_relationships", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
     t.integer "post_id", null: false
+    t.integer "tag_id", null: false
     t.index ["post_id"], name: "index_tags_relationships_on_post_id"
-    t.index ["user_id"], name: "index_tags_relationships_on_user_id"
+    t.index ["tag_id"], name: "index_tags_relationships_on_tag_id"
   end
 
   create_table "tasks", force: :cascade do |t|

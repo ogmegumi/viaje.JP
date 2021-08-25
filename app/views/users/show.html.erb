@@ -30,7 +30,8 @@
     </div>
   </div>
 </div>
-<div class="container-fluid"><!--<footer>-->
+  <% if @user == current_user %>
+    <div class="container-fluid"><!--<footer>-->
       <div class="row">
           <div class="col text-center">
               <%= link_to "memo", user_memos_path(@user.id), method: :get, class:"btn btn-outline-secondary d-block fas fa-book-open" %>
@@ -42,7 +43,8 @@
               <%= link_to 'edit',edit_user_path(@user),class: "btn btn-outline-secondary d-block fas fa-user-cog edit_user_#{@user.id}" %>
           </div>
       </div>
-</div>
+    </div>
+  <% end %>
   <div class="container mt-5">
     <div class="row d-flex">
         <% @posts.each do |post| %>
