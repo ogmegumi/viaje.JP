@@ -31,7 +31,7 @@ class MemosController < ApplicationController
     @memo = Memo.find(params[:id])
     if @memo.update(memo_params)
        flash[:notice] = "You have updateed Task successfully"
-       redirect_to user_memo_path(current_user)
+       redirect_to user_memo_path(@memo.id, current_user)
     end
   end
 

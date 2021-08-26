@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :post_connments, dependent: :destroy
   has_many :favorites,      dependent: :destroy
   has_many :tasks,          dependent: :destroy
-  
+
 
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
@@ -33,11 +33,15 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
-  def self.looks(searches, words)
-    if searches == "perfect_match"
-      @user = User.where("name LIKE ?", "#{words}")
+  def self.search_for(content, method)
+    if method == 'perfect'
+      User.where(name: content)
+    elsif method == 'forward'
+      User.where('name LIKE ?', content + '%')
+    elsif method == 'backward'
+      User.where('name LIKE ?', '%' + content)
     else
-      @user = User.where("name LIKE ?", "%#{words}%")
+      User.where('name LIKE ?', '%' + content + '%')
     end
   end
 end
