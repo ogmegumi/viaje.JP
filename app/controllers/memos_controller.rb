@@ -1,7 +1,14 @@
 class MemosController < ApplicationController
 
-  def index
-    @memos = Memo.all
+  # def index 一人のユーザーが投稿すると全て情報取得するためshowへ移行
+  #   # @memos = Memo.all
+  #   # @memo = Memo.new
+  #   # @user = current_user
+  #   # @user = @memo.user
+  # end
+
+  def show
+    @memos = Memo.where(id: params[:id])
     @memo = Memo.new
     @user = current_user
     @user = @memo.user
@@ -12,7 +19,7 @@ class MemosController < ApplicationController
     @memo.user_id = current_user.id
     if @memo.save
        flash[:notice] = "You have created Task successfully"
-       redirect_to user_memos_path
+       redirect_to user_memo_path(@memo.user_id, @memo.id)
     end
   end
 
@@ -24,14 +31,14 @@ class MemosController < ApplicationController
     @memo = Memo.find(params[:id])
     if @memo.update(memo_params)
        flash[:notice] = "You have updateed Task successfully"
-       redirect_to user_memos_path
+       redirect_to user_memo_path(current_user)
     end
   end
 
   def destroy
     @memo = Memo.find(params[:id])
     @memo.destroy
-    redirect_to user_memos_path
+    redirect_to user_memo_path(current_user)
   end
 
   private

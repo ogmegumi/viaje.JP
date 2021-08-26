@@ -1,7 +1,7 @@
 <div class="containar">
   <div class="row">
     <div class="col-md-8 ml-auto">
-      <div class="text-white text-center bg-info">MEMO</div>
+      <div class="text-white text-center h5 strong" style="background-color:#04B6D1; padding:10px;">MEMO</div>
      <% @memos.each do |memo| %>
       <div class="text-center border-bottom h-3", style="height: 20%;"><br>
         <%= check_box_tag :check %>
@@ -22,7 +22,7 @@
            <%= message %>
          <% end %>
        <% end %>
-       <%= form_with model: @memo, url: user_memos_path(current_user), method: :post, local:true do |f| %>
+       <%= form_with model: @memo, url: user_memos_path(id: @memo_id), method: :post, local:true do |f| %>
          <div class="input-group mb-3 mt-4">
            <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-suitcase"></i></span>

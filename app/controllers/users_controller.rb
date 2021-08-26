@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :correct_user, only:[:edit, :update]
 
   def index
     @users = User.all
@@ -8,6 +9,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
+    @memos = @user.memos
+    @tasks = @user.tasks
   end
 
   def edit
@@ -41,5 +44,11 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :profile_image, :introduction)
   end
 
+  def correct_user
+      user = User.find(params[:id])
+      if user != current_user #ひとしくない時！＝
+      redirect_to user_path(current_user) #before actionでチェックしてるからelse不要
+      end
+  end
 
 end
