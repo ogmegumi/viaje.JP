@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order(created_at: :desc)
     @post_comments = PostComment.all
+    @tags = Tag.all
     @post_comment = PostComment.new
     @user = current_user
   end
@@ -16,6 +17,7 @@ class PostsController < ApplicationController
     @plan_day = PlanDay.new
     @user = @post.user
     @plan_days = @post.plan_days
+    @tags = @post.tags
     # @post = @post.plan
     @post_comments = @post.post_comments
     @post_comment = PostComment.new
@@ -31,23 +33,15 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    @tag_list = params[:post][:name].split(nil)
     if @post.save
+       @post.save_tag(tag_list)
        flash[:notice] = "You have created successfully."
        redirect_to posts_path
     else
        render :new
     end
-    # もしpostでplanも同時に場合のコード
-    # @post = Post.new(post_params)
-    # if @post.save
-    #   @plan = Plan.new(plan_params)
-    #   @plan.post_id = @post.id
-    #   if @plans.save
-    #     redirect_to posts_path
-    #   else
-    #     render :new
-    #   end
-    # end
+    
   end
 
   def destroy
@@ -66,6 +60,12 @@ class PostsController < ApplicationController
      flash[:notice] = "You have updated successfully."
      redirect_to posts_path(@posts)
    end
+  end
+  
+  def search
+    @tag_list = Tag.all  #こっちの投稿一覧表示ページでも全てのタグを表示するために、タグを全取得
+    @tag = Tag.find(params[:tag_id])  #クリックしたタグを取得
+    @posts = @tag.posts.all  #クリックしたタグに紐付けられた投稿を全て表示
   end
 
   private

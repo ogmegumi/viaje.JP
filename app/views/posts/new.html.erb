@@ -38,6 +38,10 @@
            </div>
          　<%= f.text_field :content, class:"form-control", placeholder:"コメント・感想" %>
          </div>
+         <div class="input-field col s12">
+           <i class="material-icons prefix">local_offer</i>
+             <%= f.text_field :name, placeholder: "タグを複数つけるにはスペースで区切ってください" %>
+         </div>
          <hr>
          <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
        <% end %>
