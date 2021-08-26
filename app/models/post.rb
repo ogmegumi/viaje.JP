@@ -19,11 +19,15 @@ class Post < ApplicationRecord
   validates :destination, presence: true
   validates :image,       presence: true
 
-  def self.looks(searches, words)
-    if searches == "perfect_match"
-      @post = Post.where("content LIKE ? OR destination LIKE ? OR budget LIKE ?", "#{words}", "#{words}", "#{words}")
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Post.where(content: content, destination: content, budget: content)
+    elsif method == 'forward'
+      Post.where("content LIKE ? OR destination LIKE ? OR budget LIKE ?", content+'%', content+'%', content+'%')
+    elsif method == 'backward'
+      Post.where("content LIKE ? OR destination LIKE ? OR budget LIKE ?", '%'+content, '%'+content, '%'+content)
     else
-      @post = Post.where("content LIKE ? OR destination LIKE ? OR budget LIKE ?", "#{words}", "#{words}", "#{words}")
+      Post.where("content LIKE ? OR destination LIKE ? OR budget LIKE ?", '%'+content+'%', '%'+content+'%', '%'+content+'%')
     end
   end
 

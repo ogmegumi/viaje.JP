@@ -2,7 +2,10 @@
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
         <% if user_signed_in? %>
-         <a class="navbar-brand" href="/"><span>viaje.JP</span></a>
+         <a class="navbar-brand" href="/">
+           <span>
+             <%= image_tag "logo.png", size:"200x80" %>
+           </span></a>
         <% else admin_signed_in? %>
          <a class="navbar-brand" href="/admin/users"><span>viaje.JP</span></a>
         <% end %>
@@ -22,24 +25,29 @@
                    <i class="fas fa-user"></i>
                  <% end %>
                </li>
-               <li class="nav-item ml-auto">
+               <li class="nav-item">
                  <%= link_to new_post_path, class: 'nav-link text-dark btn btn-outline-secondary btn-lg mr-3' do %>
                    <i class="fas fa-marker"></i>
                  <% end %>
                </li>
-               <li class="nav-item ml-auto">
+               <li class="nav-item">
                  <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark btn btn-outline-secondary btn-lg mr-3' do %>
                    <i class="fas fa-sign-out-alt"></i>
                  <% end %>
                </li>
                <li>
-                 <div id="search-wrap">
-                   <%= form_with url: search_path, method: :get, local: :true do |f| %>
-                      <%= f.select :range, options_for_select([['User'], ['Post']]) %>
-                      <%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"]]) %>
-                      <%= f.text_field :word %>
-                   <%= f.submit "検索" %>
-                   <% end %>
+                 <button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                   検索機能
+                 </button>
+                 <div class="collapse" id="collapseExample">
+                   <div class="border p-3">
+                    <%= form_with url: search_path, method: :get, local: true do |f| %>
+                        <%= f.text_field :content %>
+                        <%= f.select :model, options_for_select({ "User" => "user", "Post" => "post" }) %>
+                        <%= f.select :method, options_for_select({ "部分一致" => "partial", "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward" }) %>
+                        <%= f.submit '検索' %>
+                      <% end %>
+                   </div>
                  </div>
                 </li>
              <% elsif admin_signed_in? %>
