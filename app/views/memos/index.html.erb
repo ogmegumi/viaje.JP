@@ -1,28 +1,28 @@
 <div class="containar">
   <div class="row">
-    <div class="col-md-8 ml-auto">
+    <div class="col-md-7 ml-auto ">
       <div class="text-white text-center h5 strong" style="background-color:#04B6D1; padding:10px;">MEMO</div>
-     <% @memos.each do |memo| %>
-      <div class="text-center border-bottom h-3", style="height: 20%;"><br>
-        <%= check_box_tag :check %>
-        <%= label_tag :check, memo.memo %>
-        <% if memo.user == current_user %>
-          <%= link_to "削除", user_memo_path(memo.user, memo.id), method: :delete, class:"btn btn-outline-danger btn-sm" %>
-          <%= link_to "編集", edit_user_memo_path(memo.user, memo.id), class:"bbtn btn-outline-success btn-sm" %><br>
+        <% @memos.each do |memo| %>
+         <div class="text-center border-bottom h", style="height: 20%;"><br>
+           <%= check_box_tag :check %>
+           <%= label_tag :check, memo.memo %>
+           <% if memo.user == current_user %>
+             <%= link_to "削除", user_memo_path(memo.user, memo.id), method: :delete, class:"btn btn-outline-danger btn-sm" %>
+             <%= link_to "編集", edit_user_memo_path(memo.user, memo.id), class:"bbtn btn-outline-success btn-sm" %><br>
+           <% end %>
+         </div>
         <% end %>
       </div>
-     <% end %>
-    </div>
-    <div class="col-md-3 col-sm-10 shadow-lg rounded px-0 my-5">
-      <h5 class="text-dark bg-light p-4">MEMO投稿</h5>
-      <div class="form-body p-4">
-       <% if @memo.errors.any? %>
-         <%= @memo.errors.count %>件のエラーが発生しました
-         <% @memo.errors.full_messages.each do |message| %>
-           <%= message %>
+      <div class="col-md-5 col-sm-10 shadow-lg rounded px-0 my-5">
+        <h5 class="text-dark bg-light p-4">MEMO投稿</h5>
+        <div class="form-body p-4">
+          <% if @memo.errors.any? %>
+           <%= @memo.errors.count %>件のエラーが発生しました
+           <% @memo.errors.full_messages.each do |message| %>
+             <%= message %>
+           <% end %>
          <% end %>
-       <% end %>
-       <%= form_with model: @memo, url: user_memos_path(id: @memo_id), method: :post, local:true do |f| %>
+         <%= form_with model: @memo, url: user_memos_path(id: @memo_id), method: :post, local:true do |f| %>
          <div class="input-group mb-3 mt-4">
            <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-suitcase"></i></span>
