@@ -23,6 +23,12 @@ class User < ApplicationRecord
   validates :name, length: { minimum: 2 }, presence: true
   validates :introduction, length: { maximum: 50 }
 
+  # 退会機能
+  def active_for_authentication?
+    super && (self.unsubscribe == false)
+  end
+
+  # フォロー機能
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
@@ -33,6 +39,7 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
+  # 検索機能
   def self.search_for(content, method)
     if method == 'perfect'
       User.where(name: content)

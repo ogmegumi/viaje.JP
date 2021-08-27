@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!,except: [:top]
+  
   def index
     @tasks = Task.where(user_id: current_user.id)
 

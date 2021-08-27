@@ -20,11 +20,7 @@
                <td><%= user.followings.count %>人</td>
                <td><%= user.followers.count %>人</td>
                <td><%= user.introduction %></td>
-               <% if current_user.following?(user) %>
-                 <td><%= link_to "Unfollow", user_relationships_path(user.id), method: :delete, class:"btn btn-outline-secondary" %></td>
-               <% else %>
-                  <td><%= link_to "Follow", user_relationships_path(user.id), method: :post, class:"btn btn-outline-secondary" %></td>
-               <% end %>
+               <%= render "relationships/follow_button", user: user 
              </tr>
            <% end %>
          </tbody>

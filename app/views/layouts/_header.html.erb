@@ -7,7 +7,10 @@
              <%= image_tag "logo.png", size:"200x80" %>
            </span></a>
         <% else admin_signed_in? %>
-         <a class="navbar-brand" href="/admin/users"><span>viaje.JP</span></a>
+         <a class="navbar-brand" href="/">
+           <span>
+             <%= image_tag "logo.png", size:"200x80" %>
+           </span></a>
         <% end %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -52,12 +55,12 @@
                 </li>
              <% elsif admin_signed_in? %>
                 <li class="nav-item">
-                 <%= link_to admin_user_path(current_admin.id), class: 'nav-link text-dark btn btn-outline-secondary btn-lg' do %>
+                 <%= link_to admin_users_path, class: 'nav-link text-dark btn btn-outline-secondary btn-lg' do %>
                    <i class="fas fa-users"></i>
                  <% end %>
                 </li>
                 <li class="nav-item ml-auto">
-                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark btn btn-outline-secondary btn-lg' do %>
+                  <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark btn btn-outline-secondary btn-lg' do %>
                    <i class="fas fa-sign-out-alt"></i>
                  <% end %>
                 </li>

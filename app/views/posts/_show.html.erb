@@ -32,13 +32,7 @@
                コメント数:<%= post.post_comments.count %>
             </span>
             <!--------フォローユーザーのみ遷移可能---------->
-            <% if current_user.following?(post.user) %>
-              <span id="plan_show">
-                <%= link_to "旅行計画表はこちらから", post_path(post.id) ,class: "btn btn-outline-secondary btn-sm" %>
-              </span>
-            <% else %>
-                <%= link_to "旅行計画表みるにはFollow", user_relationships_path(post.user.id), method: :post, class: "btn btn-outline-info d-block btn-sm mx-auto" %>
-            <% end %>
+             <% render "relationships/follow_indexbutton", post: post %>
           </div>
 
             <p class="cardtitle text-dark ml-3"><i class="fas fa-plane"></i>
