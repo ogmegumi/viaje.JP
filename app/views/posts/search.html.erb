@@ -11,7 +11,7 @@
           (<%= list.posts.count %>)
        </span>
      <% end %>
-   </div>            
+   </div>
 </div>
 
 <% @posts.each do |post| %>
@@ -47,7 +47,7 @@
                 <%= link_to "旅行計画表はこちらから", post_path(post.id) ,class: "btn btn-outline-secondary ml-5" %>
               </span>
             <% else %>
-                <%= link_to "旅行計画表みるにはFollow", user_relationships_path(@user.id), method: :post, class: "btn btn-outline-info d-block mx-auto" %>
+                <%= link_to "旅行計画表みるにはFollow", user_relationships_path(post.user_id), method: :post, class: "btn btn-outline-info d-block mx-auto" %>
             <% end %>
 
           </div>
@@ -76,4 +76,4 @@
     </div>
   </div>
 <% end %>
-            
+

@@ -34,7 +34,7 @@
       </div>
 
       <% @tasks1.each do |task| %>
-        <div class="index-item mb-20">
+        <div class="form-check">
           <%= check_box_tag :check %>
           <%= label_tag :check, task.belongings %>
           <% if task.user_id == current_user.id %>
@@ -61,7 +61,7 @@
         <div class="index-item mb-20">
           <%= check_box_tag :check %>
           <%= label_tag :check, task.belongings %>
-          <% if task.user_id == current_user %>
+          <% if task.user_id == current_user.id %>
             <%= link_to "削除", user_task_path(task.user_id, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
             <%= link_to "編集", edit_user_task_path(task.user_id, task.id), class:"bbtn btn-outline-success btn-sm" %>
           <% end %>
@@ -97,10 +97,10 @@
           <div class="index-item mb-20">
             <%= check_box_tag :check %>
             <%= label_tag :check, task.belongings %>
-            <% if task.user_id == current_user %>
-              <%= link_to "削除", user_task_path(task.user_id, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
-              <%= link_to "編集", edit_user_task_path(task.user_id, task.id), class:"bbtn btn-outline-success btn-sm" %>
-            <% end %>
+          <% if task.user_id == current_user.id %>
+            <%= link_to "削除", user_task_path(task.user_id, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+            <%= link_to "編集", edit_user_task_path(task.user_id, task.id), class:"bbtn btn-outline-success btn-sm" %>
+          <% end %>
           </div>
         <% end %>
 
@@ -139,10 +139,10 @@
           <div class="index-item mb-20">
             <%= check_box_tag :check %>
             <%= label_tag :check, task.belongings %>
-            <% if task.user_id == current_user %>
-              <%= link_to "削除", user_task_path(task.user_id, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
-              <%= link_to "編集", edit_user_task_path(task.user_id, task.id), class:"bbtn btn-outline-success btn-sm" %>
-            <% end %>
+          <% if task.user_id == current_user.id %>
+            <%= link_to "削除", user_task_path(task.user_id, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+            <%= link_to "編集", edit_user_task_path(task.user_id, task.id), class:"bbtn btn-outline-success btn-sm" %>
+          <% end %>
           </div>
         <% end %>
 
@@ -181,7 +181,7 @@
         <div class="index-item mb-20">
           <%= check_box_tag :check %>
           <%= label_tag :check, task.belongings %>
-          <% if task.user_id == current_user %>
+          <% if task.user_id == current_user.id %>
             <%= link_to "削除", user_task_path(task.user_id, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
             <%= link_to "編集", edit_user_task_path(task.user_id, task.id), class:"bbtn btn-outline-success btn-sm" %>
           <% end %>
@@ -205,10 +205,10 @@
           <div class="index-item mb-20">
             <%= check_box_tag :check %>
             <%= label_tag :check, task.belongings %>
-            <% if task.user_id == current_user %>
-              <%= link_to "削除", user_task_path(task.user_id, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
-              <%= link_to "編集", edit_user_task_path(task.user_id, task.id), class:"bbtn btn-outline-success btn-sm" %>
-            <% end %>
+          <% if task.user_id == current_user.id %>
+            <%= link_to "削除", user_task_path(task.user_id, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+            <%= link_to "編集", edit_user_task_path(task.user_id, task.id), class:"bbtn btn-outline-success btn-sm" %>
+          <% end %>
           </div>
         <% end %>
       </div>

@@ -1,9 +1,9 @@
 <% users.each do |user| %>
-      <div class="col-md-8 col-md-2 mx-auto">
+      <div class="col-md-4 col-md-2 mx-auto">
         <div class="card-wrap">
           <div class="card">
            <div class="card-header align-items-center d-flex">
-              <%= attachment_image_tag(user, :profile_image, :fill, 200, 200, class:"mt-3 rounded-circle", fallback: "noimage.png", size:"200x200") %>
+              <%= attachment_image_tag(user, :profile_image, :fill, 60, 60, class:"mt-3 rounded-circle", fallback: "noimage.png", size:"60x60") %>
               <span>
                 <%= link_to user_path(user), class:"ml-3 h5" do %>
                   <i class="fas fa-user"></i>
@@ -12,6 +12,7 @@
               </span>
            </div>
            <div class="card-body">
+             <p>投稿数：<%= user.posts.count %></p>
              <p>フォロー数<%= user.followings.count %>人</p>
                <p>フォロワー数<%= user.followers.count %>人</p>
                <% if current_user.following?(user) %>

@@ -41,7 +41,7 @@ class PostsController < ApplicationController
     else
        render :new
     end
-    
+
   end
 
   def destroy
@@ -61,7 +61,7 @@ class PostsController < ApplicationController
      redirect_to posts_path(@posts)
    end
   end
-  
+
   def search
     @tag_list = Tag.all  #こっちの投稿一覧表示ページでも全てのタグを表示するために、タグを全取得
     @tag = Tag.find(params[:tag_id])  #クリックしたタグを取得

@@ -65,12 +65,10 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
 gem 'font-awesome-sass', '~> 5.13'
 gem 'pry-byebug'
 gem 'kaminari'
-gem 'omniauth-facebook'                  # Facebook認証
-gem 'omniauth-twitter'                   # Twitter認証
-gem 'omniauth-google-oauth2'             # Google認証
 gem 'dotenv-rails'                       # 環境変数の管理
 gem 'geocoder'
 group :production do

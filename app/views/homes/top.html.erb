@@ -1,29 +1,73 @@
-<h1>Welcome to viaje.JP</h1>
-<p></p>
+<div class="card-container-top">
+    <div class="card-img-hometop">
+      <div id="container">
+        <div id="theTarget">
+          <div class="image6"></div>
+          <div class="image1"></div>
+          <div class="image2"></div>
+          <div class="image3"></div>
+          <div class="image4"></div>
+          <div class="image5"></div>
+        </div>
+      </div>
+    </div>
 
-<div class="card border-dark mb-3" style="max-width: 18rem;">
-  <div class="card-header">STEP1</div>
-  <div class="card-body text-dark">
-    <h5 class="card-title">見出し投稿</h5>
-    <p class="card-text">新規登録後、行先/泊数/予算/コメントと画像を投稿し、計画表の見出し記事を作成します。</p>
-  </div>
+    <div class="card-text-top">
+        <a href="#"><h2>W E L C O M E</h2></a>
+        <p>旅の思い出を共有しませんか？</p>
+        <p>フォロワー同士なら旅の計画表を共有できます。</p>
+        <p>当サイトは新規登録後、投稿の閲覧が可能です。</p>
+        <p><%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-info" %></p>
+        <p><%= link_to "ログイン", new_user_session_path, class: "btn btn-info" %></p>
+    </div>
+</div>
 </div>
 
-<div class="card border-dark mb-3" style="max-width: 18rem;">
-  <div class="card-header">STEP2</div>
-  <div class="card-body text-dark">
-    <h5 class="card-title">予定、計画表の投稿</h5>
-    <p class="card-text">予定、計画表を作成。時間ごとに計画を立てます。<br>
-      日程は本人のみ記載されフォローしているユーザー同士のみ予定、計画表を参照できます。<br>
-      フォローしているユーザー同士
-    </p>
-  </div>
-</div>
 
-<div class="card border-dark mb-3" style="max-width: 18rem;">
-  <div class="card-header">STEP3</div>
-  <div class="card-body text-dark">
-    <h5 class="card-title">投稿</h5>
-    <p class="card-text">予定、計画表を作成。時間ごとに計画を立てます。日程は本人のみ記載されフォローしているユーザー同士のみ予定、計画表を参照できます。</p>
+
+<div class="container">
+  <div class="row">
+      <div class="col">
+        <div class="card border-dark mb-3" style="max-width: 18rem;">
+          <div class="card-header">STEP1</div>
+          <%= image_tag "step1.jpeg", class:"card-img-step1" %>
+           <div class="card-body text-dark">
+             <h5 class="card-title">見出し投稿</h5>
+             <p class="card-text">新規登録後、行先/泊数/予算/コメントと画像を投稿し、<br>
+              旅行に関する見出し記事を作成します。<br>
+               <%= link_to "新規投稿はこちらから", new_post_path, class: "btn btn-info btn-sm" %>
+             </p>
+           </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card border-dark mb-3" style="max-width: 18rem;">
+          <div class="card-header">STEP2</div>
+          <%= image_tag "step2.jpeg", class:"card-img-step2" %>
+          <div class="card-body text-dark">
+            <h5 class="card-title">旅行計画表の作成</h5>
+            <p class="card-text">予定、計画表を作成。時間ごとに計画を立てます。<br>
+              フォローしているユーザー同士のみ予定、計画表を参照できます。<br>
+           </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card border-dark mb-3" style="max-width: 18rem;">
+          <div class="card-header">STEP3</div>
+          <%= image_tag "step3.jpeg", class:"card-img-step3" %>
+          <div class="card-body text-dark">
+            <h5 class="card-title">その他</h5>
+            <p class="card-text">
+              GoogleMapより観光地の検索が可能。
+              忘れ物管理とメモ機能あり。
+              userと投稿の検索が可能。<br>
+              タグの生成、タグで検索が可能。
+            </p>
+          </div>
+        </div>
+      </div>
   </div>
 </div>

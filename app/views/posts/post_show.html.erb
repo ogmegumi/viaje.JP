@@ -45,17 +45,9 @@
             <p class="card-text text-dark ml-3">
               <%= @post.content %>
             </p>
-            <div class="tag">
-              <% @tags.each do |tag|%>
-                <span>
-                  <%= link_to tag.name, tag_posts_path(tag_id: tag.id) %>
-                  (<%= tag.posts.count %>)
-                </span>
-              <% end %>
-            </div>
             <% if current_user.following?(@post.user) %>
               <span id="plan_show">
-                <%= link_to "旅行計画表はこちらから", post_path(@post.id) ,class: "btn btn-outline-secondary ml-5" %>
+                <%= link_to "旅行計画表はこちらから", post_path(@post.id) , class: "btn btn-outline-secondary ml-5 d-block" %>
               </span>
             <% else %>
                 <%= link_to "旅行計画表みるにはFollow", user_relationships_path(@user.id), method: :post, class: "btn btn-outline-info d-block mx-auto" %>
@@ -70,7 +62,7 @@
                    <%= f.text_area :comment, :size => "60x1", class: "form-control", placeholder: "コメントをここに" %>
                    <%= f.submit "送信する", class: "d-flex btn btn-outline-secondary", id: "submit" %>
                  <% end %>
-                 
+
               </span>
             </div>
           </div>
