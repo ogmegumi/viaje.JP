@@ -69,7 +69,7 @@ gem 'jquery-turbolinks'
 gem 'font-awesome-sass', '~> 5.13'
 gem 'pry-byebug'
 gem 'kaminari'
-gem 'dotenv-rails'                       # 環境変数の管理
+gem 'dotenv-rails' # 環境変数の管理
 gem 'geocoder'
 gem 'rubocop-airbnb'
 group :production do

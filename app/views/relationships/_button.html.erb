@@ -1,0 +1,3 @@
+<%= link_to "フォロー(#{user.followings.count})", user_followings_path(user), class: "nav-link" %>
+
+<%= link_to "フォロワー(#{user.followers.count})", user_followers_path(user), class: "nav-link" %>

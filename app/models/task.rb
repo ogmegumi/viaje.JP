@@ -1,3 +1,3 @@
 class Task < ApplicationRecord
-   validates :belongings, presence: true
+  validates :belongings, presence: true
 end

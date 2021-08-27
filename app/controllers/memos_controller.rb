@@ -1,5 +1,4 @@
 class MemosController < ApplicationController
-
   def index
     @memos = Memo.where(user_id: current_user.id)
     @memo = Memo.new
@@ -11,8 +10,8 @@ class MemosController < ApplicationController
     @memo = Memo.new(memo_params)
     @memo.user_id = current_user.id
     if @memo.save
-       flash[:notice] = "You have created Task successfully"
-       redirect_to user_memos_path(@memo.user_id)
+      flash[:notice] = "You have created Task successfully"
+      redirect_to user_memos_path(@memo.user_id)
     end
   end
 
@@ -23,8 +22,8 @@ class MemosController < ApplicationController
   def update
     @memo = Memo.find(params[:id])
     if @memo.update(memo_params)
-       flash[:notice] = "You have updateed Task successfully"
-       redirect_to user_memos_path(@memo.user_id)
+      flash[:notice] = "You have updateed Task successfully"
+      redirect_to user_memos_path(@memo.user_id)
     end
   end
 

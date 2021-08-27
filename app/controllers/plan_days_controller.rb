@@ -1,5 +1,4 @@
 class PlanDaysController < ApplicationController
-
   # def index  !!renderへ変更!!
   #   @plan_days = PlanDay.all
   #   @plan = Plan.all
@@ -40,8 +39,8 @@ class PlanDaysController < ApplicationController
   end
 
   private
+
   def day_params
     params.require(:plan_day).permit(:days, [plans_attributes: [:start_time, :finish_time, :plan_content]])
   end
-
 end

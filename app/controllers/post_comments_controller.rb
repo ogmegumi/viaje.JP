@@ -1,5 +1,4 @@
 class PostCommentsController < ApplicationController
-
   def create
     @post = Post.find(params[:post_id])
     @post_comment = PostComment.new(post_comment_params)
@@ -20,8 +19,7 @@ class PostCommentsController < ApplicationController
   private
 
   def post_comment_params
-    params.require(:post_comment).permit(:comment)#merge(user_id: current_user.id, post_id: params[:post_id])
+    params.require(:post_comment).permit(:comment) # merge(user_id: current_user.id, post_id: params[:post_id])
     # mergeメソッドでuser_idとpost_idをcommentテーブルのレコードに格納
   end
-
 end

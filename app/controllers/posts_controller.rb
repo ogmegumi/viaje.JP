@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-
   def index
     @posts = Post.all.order(created_at: :desc)
     @post_comments = PostComment.all
@@ -33,15 +32,14 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @tag_list = params[:post][:name].split(nil)
+    tag_list = params[:post][:name].split(nil)
     if @post.save
-       @post.save_tag(tag_list)
-       flash[:notice] = "You have created successfully."
-       redirect_to posts_path
+      @post.save_tag(tag_list)
+      flash[:notice] = "You have created successfully."
+      redirect_to posts_path
     else
-       render :new
+      render :new
     end
-
   end
 
   def destroy
@@ -51,21 +49,21 @@ class PostsController < ApplicationController
   end
 
   def edit
-   @post = Post.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def update
-   @post = Post.find(params[:id])
-   if @post.update(post_params)
-     flash[:notice] = "You have updated successfully."
-     redirect_to posts_path(@posts)
-   end
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      flash[:notice] = "You have updated successfully."
+      redirect_to posts_path(@posts)
+    end
   end
 
   def search
-    @tag_list = Tag.all  #こっちの投稿一覧表示ページでも全てのタグを表示するために、タグを全取得
-    @tag = Tag.find(params[:tag_id])  #クリックしたタグを取得
-    @posts = @tag.posts.all  #クリックしたタグに紐付けられた投稿を全て表示
+    @tag_list = Tag.all # こっちの投稿一覧表示ページでも全てのタグを表示するために、タグを全取得
+    @tag = Tag.find(params[:tag_id]) # クリックしたタグを取得
+    @posts = @tag.posts.all # クリックしたタグに紐付けられた投稿を全て表示
   end
 
   private

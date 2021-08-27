@@ -23,27 +23,26 @@ class Post < ApplicationRecord
     if method == 'perfect'
       Post.where(content: content, destination: content, budget: content)
     elsif method == 'forward'
-      Post.where("content LIKE ? OR destination LIKE ? OR budget LIKE ?", content+'%', content+'%', content+'%')
+      Post.where("content LIKE ? OR destination LIKE ? OR budget LIKE ?", content + '%', content + '%', content + '%')
     elsif method == 'backward'
-      Post.where("content LIKE ? OR destination LIKE ? OR budget LIKE ?", '%'+content, '%'+content, '%'+content)
+      Post.where("content LIKE ? OR destination LIKE ? OR budget LIKE ?", '%' + content, '%' + content, '%' + content)
     else
-      Post.where("content LIKE ? OR destination LIKE ? OR budget LIKE ?", '%'+content+'%', '%'+content+'%', '%'+content+'%')
+      Post.where("content LIKE ? OR destination LIKE ? OR budget LIKE ?", '%' + content + '%', '%' + content + '%', '%' + content + '%')
     end
   end
 
   def save_tag(sent_tags)
-    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    current_tags = tags.pluck(:name) unless tags.nil?
     old_tags = current_tags - sent_tags
     new_tags = sent_tags - current_tags
 
     old_tags.each do |old|
-      self.tags.delete Tag.find_by(name: old)
+      tags.delete Tag.find_by(name: old)
     end
 
     new_tags.each do |new|
       new_tag = Tag.find_or_create_by(name: new)
-      self.tags << new_tag
+      tags << new_tag
     end
   end
-
 end

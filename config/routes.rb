@@ -1,31 +1,30 @@
 Rails.application.routes.draw do
   devise_for :admins, controllers: {
-       sessions:      'admins/sessions',
-       passwords:     'admins/passwords',
-       registrations: 'admins/registrations'
+    sessions: 'admins/sessions',
+    passwords: 'admins/passwords',
+    registrations: 'admins/registrations',
   }
   devise_for :users
   root 'homes#top'
   get 'search' => 'searches#search'
 
-
   resources :users do
     resources :memos, except: [:show]
     resources :tasks, except: [:show]
-   # ————フォロワー機能————
-    resource :relationships, only: [:create, :destroy]
+    # ————フォロワー機能————
+    resources :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
-   # ———————退会機能———————————————
+    # ———————退会機能———————————————
     collection do
       get 'unsubscribe'
       patch 'withdraw' => 'users#withdraw'
     end
- end
+  end
 
- resources :tags do
-   get 'posts', to: 'posts#search'
- end
+  resources :tags do
+    get 'posts', to: 'posts#search'
+  end
 
   resources :posts do
     member do
@@ -42,7 +41,7 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     resources :tasks, except: [:show]
-    resources :users, only: [:index, :show, :edit, :update ]
+    resources :users, only: [:index, :show, :edit, :update]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

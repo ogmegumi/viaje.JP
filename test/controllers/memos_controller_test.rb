@@ -30,5 +30,4 @@ class MemosControllerTest < ActionDispatch::IntegrationTest
     get memos_destroy_url
     assert_response :success
   end
-
 end

@@ -1,5 +1,4 @@
 class PlansController < ApplicationController
-
   # def index /////post_showに移行のため削除
   #   @post = Post.find(params[:id])
   #   @plans = Plan.where(post_id: params[:id])
@@ -30,7 +29,6 @@ class PlansController < ApplicationController
     end
   end
 
-
   def update
     @plan = Plan.find(params[:id])
     @plan.update(plan_params)
@@ -44,8 +42,8 @@ class PlansController < ApplicationController
   end
 
   private
+
   def plan_params
     params.require(:plan).permit(:start_time, :finish_time, :plan_content, :days)
   end
-
 end

@@ -9,8 +9,8 @@ class TasksController < ApplicationController
     @tasks5 = Task.where(category: "task5", user_id: current_user.id)
     @tasks6 = Task.where(category: "task6", user_id: current_user.id)
 
-    #@task_categories = Task.select(:category).distinct.pluck(:category) 
-    #カテゴリーモデルを作って、部分プレートで行うと完成度高くなる。カテゴリーをSQLからselectして取得
+    # @task_categories = Task.select(:category).distinct.pluck(:category)
+    # カテゴリーモデルを作って、部分プレートで行うと完成度高くなる。カテゴリーをSQLからselectして取得
 
     @task = Task.new
     @user = current_user
@@ -21,8 +21,8 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.user_id = current_user.id
     if @task.save
-       flash[:notice] = "You have created Task successfully"
-       redirect_to user_tasks_path(@task.user_id)
+      flash[:notice] = "You have created Task successfully"
+      redirect_to user_tasks_path(@task.user_id)
     end
   end
 
@@ -33,8 +33,8 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-       flash[:notice] = "You have updateted Task successfully"
-       redirect_to user_tasks_path(@task.user_id)
+      flash[:notice] = "You have updateted Task successfully"
+      redirect_to user_tasks_path(@task.user_id)
     end
   end
 
@@ -45,8 +45,8 @@ class TasksController < ApplicationController
   end
 
   private
+
   def task_params
     params.require(:task).permit(:belongings, :category)
   end
-
 end
