@@ -1,5 +1,5 @@
 class PlanDaysController < ApplicationController
-  
+
   before_action :authenticate_user!,except: [:top]
 
   # def index  !!renderへ変更!!
@@ -15,6 +15,7 @@ class PlanDaysController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:post_id])
     @plan_day = PlanDay.find(params[:id])
   end
 
@@ -30,15 +31,17 @@ class PlanDaysController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:post_id])
     @plan_day = PlanDay.find(params[:id])
-    @plan.destroy
-    redirect_to post_path(@post.plan_day)
+    @plan_day.destroy
+    redirect_to post_path(@plan_day.post_id)
   end
 
   def update
+    @post = Post.find(params[:post_id])
     @plan_day = PlanDay.find(params[:id])
-    @plan.update(plan_params)
-    redirect_to post_path(@post.plan_day)
+    @plan_day.update(day_params)
+    redirect_to post_path(@plan_day.post_id)
   end
 
   private

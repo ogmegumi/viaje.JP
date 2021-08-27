@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!,except: [:top]
 
   def index
     @posts = Post.all.order(created_at: :desc)
@@ -16,8 +15,9 @@ class PostsController < ApplicationController
   def show
     @posts = Post.where(user_id: current_user.id)
     @post = Post.find(params[:id])
-    @plan_day = PlanDay.new
     @user = @post.user
+    @plan_day = PlanDay.new
+    @plans = @plan_day.plans.build
     @plan_days = @post.plan_days
     @tags = @post.tags
     # @post = @post.plan
@@ -76,7 +76,4 @@ class PostsController < ApplicationController
     params.require(:post).permit(:destination, :days, :nights, :image, :content, :budget)
   end
 
-  # def plan_params
-  #   params.require(:plan).permit(~~~~~)
-  # end
 end

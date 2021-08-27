@@ -1,9 +1,5 @@
- <% if post.user == current_user %>
-   <%= link_to "計画詳細ページ", post_path(post.id) ,class: "btn btn-outline-secondary btn-sm" %>
-<% else %>
     <% if current_user.following?(post.user) %>
-      <%= link_to "旅行計画表はこちらから", post_path(post.id) ,class: "btn btn-outline-secondary btn-sm" %>
+    　<%= link_to "旅行計画表はこちらから", post_path(post.id) ,class: "btn btn-outline-secondary btn-sm" %>
     <% else %>
-      <%= link_to "旅行計画表みるにはFollow", user_relationships_path(user.id), method: :post, class: "btn btn-outline-info d-block mx-auto" %>
+        <%= link_to "旅行計画表みるにはFollow", user_relationships_path(user.id), method: :post, class: "btn btn-outline-info d-block mx-auto" %>
     <% end %>
- <% end %>

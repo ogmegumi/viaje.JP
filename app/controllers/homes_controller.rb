@@ -15,4 +15,4 @@ class HomesController < ApplicationController
      flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
      redirect_to root_path
    end
-  end
+end

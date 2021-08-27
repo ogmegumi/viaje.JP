@@ -1,28 +1,27 @@
-<div class="col-md-6 d-block">
-        <h4 class="text-center">旅行計画詳細</h4>
-        <div class="h4 text-right">
-          <%= link_to "plan_days", new_post_plan_day_path(@post, @plan_days), class: "btn btn-secondary fas fa-plus-circle" %>
-        </div>
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">計画日</th>
-              <th scope="col">時間</th>
-              <th scope="col">計画内容</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @plan_days.each do |day|%>
-              <%= day.days %>
-              <% day.plans.each do |plan| %>
-                <tr>
-                  <th scope="row">
-                    <%= plan.start_time.strftime('%R') %><br>
-                    |<br>
-                    <%= plan.finish_time.strftime('%R') %>
+<h4 class="text-center">旅行計画詳細</h4>
+  <div class="h4 text-right">
+    <%= link_to "plan_days", new_post_plan_day_path(@post, @plan_days), class: "btn btn-secondary fas fa-plus-circle" %>
+  </div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">計画日</th>
+        <th scope="col">時間</th>
+        <th scope="col">計画内容</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @plan_days.each do |day|%>
+        <%= day.days %>
+        <% day.plans.each do |plan| %>
+          <tr>
+            <th scope="row">
+              <%= plan.start_time.strftime("%H:%M") %><br>
+                |<br>
+                    <%= plan.finish_time.strftime("%H:%M") %>
                   </th>
-                  <td class="h6"><br><%= plan.plan_content %><br></td>
+                  <td class="h7"><br><%= plan.plan_content %><br></td>
                   <td>
                     <%= link_to "削除", post_plan_day_path(day.post, day), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
                     <%= link_to "編集", edit_post_plan_day_path(day.post, day), class:"bbtn btn-outline-success btn-sm" %>
@@ -34,4 +33,3 @@
         </table>
       </div>
     </div>
-</div>

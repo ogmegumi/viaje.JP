@@ -35,7 +35,11 @@
           </div>
             <!--------フォローユーザーのみ遷移可能---------->
               <div id="plan_show">
-                <%= render "relationships/follow_indexbutton", post: post, user: user %>
+                <% if current_user.following?(post.user) %>
+                　<%= link_to "旅行計画表はこちらから", post_path(post.id) ,class: "btn btn-outline-secondary btn-sm" %>
+                <% else %>
+                  <%= link_to "旅行計画表みるにはFollow", user_relationships_path(post.user), method: :post, class: "btn btn-outline-info d-block mx-auto" %>
+                <% end %>
               </div>
 
             <p class="cardtitle text-dark ml-3"><i class="fas fa-plane"></i>

@@ -22,7 +22,8 @@ class User < ApplicationRecord
 
   validates :name, length: { minimum: 2 }, presence: true
   validates :introduction, length: { maximum: 50 }
-
+  
+  
   # 退会機能
   def active_for_authentication?
     super && (self.unsubscribe == false)
@@ -32,9 +33,11 @@ class User < ApplicationRecord
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
+  
   def unfollow(user_id)
     relationships.find_by(followed_id: user_id).destroy
   end
+  
   def following?(user)
     followings.include?(user)
   end
