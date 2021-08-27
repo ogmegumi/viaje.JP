@@ -1,15 +1,15 @@
 <div class="containar">
   <div class="row no-gutters">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
-      <h5 class="text-dark bg-light p-4 mb-0">投稿フォーム編集</h5>
+      <h5 class="text-dark bg-light p-4 mb-0">編集フォーム</h5>
       <div class="form-body p-4">
        <% if @post.errors.any? %>
-         <div id="error_explanation">
-           <%= @post.errors.count %>件のエラーが発生しました
-           <% @post.errors.full_messages.each do |message| %>
-             <%= message %>
-           <% end %>
-         </div>
+        <div id="error_explanation">
+         <%= @post.errors.count %>件のエラーが発生しました
+         <% @post.errors.full_messages.each do |message| %>
+           <%= message %>
+         <% end %>
+        </div>
        <% end %>
        <%= form_with model: @post, local:true do |f| %>
          <%= f.attachment_field :image, class:"w-100" %>
@@ -30,17 +30,24 @@
            <div class="input-group-prepend">
              <span class="input-group-text" aria-hidden="true"><i class="fas fa-hand-holding-usd"></i></span>
            </div>
-          <%= f.text_field :budget, class:"form-control", placeholder:"予算" %>円
+          <%= f.text_field :budget, class: "form-control", placeholder: "予算" %>円
          </div>
          <div class="input-group mb-3 mt-4">
            <div class="input-group-prepend">
              <span class="input-group-text" aria-hidden="true"><i class="fas fa-comment-alt"></i></span>
            </div>
-         　<%= f.text_field :content, class:"form-control", placeholder:"コメント・感想" %>
+         　<%= f.text_field :content, class: "form-control d-block", placeholder: "コメント・感想" %>
          </div>
+         <div class="input-group mb-3 mt-4">
+           <div class="input-group-prepend">
+             <span class="input-group-text" aria-hidden="true">Tag</span>
+             <%= f.text_field :name, placeholder: "複数つけるにはスペースで区切ってください", class: "form-control block" %>
+           </div>
+          </div>
          <hr>
          <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
        <% end %>
       </div>
     </div>
   </div>
+</div>

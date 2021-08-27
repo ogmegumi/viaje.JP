@@ -47,11 +47,8 @@
             </p>
             <% if current_user.following?(@post.user) %>
               <span id="plan_show">
-                <%= link_to "旅行計画表はこちらから", post_path(@post.id) , class: "btn btn-outline-secondary ml-5 d-block" %>
+                <%= render "relationships/follow_indexbutton", post: @post, user: @user %>
               </span>
-            <% else %>
-                <%= link_to "旅行計画表みるにはFollow", user_relationships_path(@user.id), method: :post, class: "btn btn-outline-info d-block mx-auto" %>
-            <% end %>
             <hr>
             <div class="row d-block">
               <div id="comment_<%= @post.id %>">
