@@ -16,8 +16,8 @@
  @import "bootstrap";
  @import "font-awesome-sprockets";
  @import "font-awesome";
- 
- 
+
+
   #error_explanation {
    width: 450px;
    border: 2px dashed  #ff3366;
@@ -30,4 +30,68 @@
    margin-left: 40px;
    margin-top: 10px;
    margin-bottom: 10px;
+  }
+
+  body {
+   font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'
+  }
+
+  #box{
+   height: 600px;
+  }
+
+   // TOP PAGE
+
+  /*モバイルファースト*/
+
+ .card-container-top{
+    background: #3D5380;
+    color: #fff;
+    display: flex;
+    margin: 40px auto;
+    width: 100%;
+ }
+ .card-container-top a{
+    text-decoration: none;
+    color: #cddc39;
+ }
+
+ .card-text-top{
+    width: 100%;
+    margin: 70px;
+ }
+ .card-text-top h2{
+    padding-top: 10px;
+    font-size: 50px;
+ }
+ .card-text-top p{
+    font-size: 15px;
+ }
+ .card-img-hometop{
+    width: 80%;
+    height: 500px;
+ }
+
+
+
+  #theTarget {
+   height: 500px;
+  }
+  .image1 {
+   background-image: image-url("image1.jpg");
+  }
+  .image2 {
+   background-image: image-url("image2.jpg");
+  }
+  .image3 {
+   background-image: image-url("image3.jpg");
+  }
+  .image4 {
+   background-image: image-url("image4.jpg");
+  }
+  .image5 {
+   background-image: image-url("image5.jpg");
+  }
+  .image6 {
+   background-image: image-url("top.jpg");
   }

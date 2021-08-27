@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
 
   resources :users do
-    resources :memos, except: [:index]
-    resources :tasks, except: [:index]
+    resources :memos, except: [:show]
+    resources :tasks, except: [:show]
    # ————フォロワー機能————
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
