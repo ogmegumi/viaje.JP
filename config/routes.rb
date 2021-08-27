@@ -36,8 +36,8 @@ Rails.application.routes.draw do
     end
     resources :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
-    resources :plan_days, only: [:create, :destroy, :new, :edit, :index, :show] do
-      resources :plans, except: [:show, :index]
+    resources :plan_days, only: [:create, :destroy, :new, :edit, :index, :update] do
+      # resources :plans, except: [:show, :index]
     end
   end
   namespace :admin do

@@ -1,5 +1,5 @@
 <% posts.each do |post| %>
- <div class="col-md-3">
+ <div class="col-md-6 mt-5">
     <div class="card-wrap">
       <div class="card">
         <div class="card-header align-items-center d-flex">
@@ -22,7 +22,7 @@
               </div>
            <% end %>
         </div>
-        <%= attachment_image_tag post, :image, class:"card-img-top" %>
+        <%= attachment_image_tag post, :image, class:"card-img-top", size: "300x300" %>
         <div class="card-body">
           <div class="row ml-3 mb-3">
             <span id="favorite-btn_<%= post.id %>">
@@ -47,17 +47,17 @@
             <p class="card-text text-dark ml-3">
               <%= post.content %>
             </p>
-            <div class="tag_list">
-              <% post.tags.each do |list| %>
-                <%= link_to list.name, tag_posts_path(tag_id: list.id), class: "btn btn-outline-info" %>
-                  (<%= list.posts.count %>)
-              <% end %>
-            </div>
             <hr>
             <div class="row d-block">
               <div id="comment_<%= post.id %>">
                 <%= render "post_comments/comment", post: post %>
               </div>
+              <span id="form_<%= post.id %>">
+                 <%= form_with model:[post, @post_comment], remtote: true do |f| %>
+                   <%= f.text_area :comment, :size => "60x1", class: "form-control", placeholder: "コメントをここに" %>
+                   <%= f.submit "送信する", class: "d-flex btn btn-outline-secondary", id: "submit" %>
+                 <% end %>
+              </span>
             </div>
           </div>
         </div>

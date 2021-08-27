@@ -1,7 +1,7 @@
 <div class="containar">
   <div class="row no-gutters">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
-      <h5 class="text-dark bg-light p-4 mb-0">計画詳細
+      <h5 class="text-dark bg-light p-4 mb-0">計画詳細</h5>
       <p>※詳細ページではご自身のみ日付が表示されます。<p>
       <div class="form-body p-4">
        <% if @plan_day.errors.any? %>
@@ -12,7 +12,7 @@
            <% end %>
          </div>
        <% end %>
-       <%= form_with model: @plan_day, url: post_plan_days_path(@post), local:true do |f| %>
+       <%= form_with model: @plan_day, url: post_plan_day_path(@post), local:true do |f| %>
          <div class="input-group mb-3">
              <div class="input-group-prepend">
                 <span class="input-group-text" aria-hidden="true"><i class="fas fa-history"></i></span>

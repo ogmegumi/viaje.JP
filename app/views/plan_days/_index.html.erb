@@ -1,41 +1,33 @@
-<div class="col-md-6 d-block">
-        <h4 class="text-center">旅行計画詳細</h4>
-        <div class="h4 text-right">
-          <%= link_to "plan_days", new_post_plan_day_path(post, plan_days), class: "btn btn-secondary fas fa-plus-circle" %>
-        </div>
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">計画日</th>
-              <th scope="col">時間</th>
-              <th scope="col">計画内容</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% plan_days.each do |day|%>
-                <tr>
-                  <th scope="row">
-                    <%= day.days %>
-                  </th>
-              <% day.plans.each do |plan| %>
-                  <th scope="row">
-                    <%= plan.start_time.strftime('%R') %><br>
-                    |<br>
-                    <%= plan.finish_time.strftime('%R') %>
-                  </th>
-                  <td class="h6"><br><%= plan.plan_content %><br></td>
-                  <td>
-                    <% if post.plan_days == current_user %>
-                      <%= link_to "削除", post_plan_day_path(day.post, day), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
-                      <%= link_to "編集", edit_post_plan_day_path(day.post, day), class:"bbtn btn-outline-success btn-sm" %>
-                    <% end %>
-                  </td>
-                </tr>
-              <% end %>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
-</div>
+    <table class="table d-block">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">計画日</th>
+          <th scope="col">時間</th>
+          <th scope="col">計画内容</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% plan_days.each do |day|%>
+          <tr>
+              <th scope="row">
+                <%= day.days.strftime("%F") %>
+              </th>
+            <% day.plans.each do |plan| %>
+              <th scope="row">
+                <%= plan.start_time.strftime("%H:%M") %><br>
+               <p style="margin-right: 10px;">|</p>
+                <%= plan.finish_time.strftime("%H:%M") %>
+              </th>
+              <td class="h6"><br><%= plan.plan_content %><br></td>
+              <td>
+                <% if post.user == current_user %>
+                  <%= link_to "削除", post_plan_day_path(day.post, day), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+                  <%= link_to "編集", edit_post_plan_day_path(day.post, day), class:"bbtn btn-outline-success btn-sm" %>
+                <% end %>
+              </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
