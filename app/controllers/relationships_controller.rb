@@ -1,4 +1,6 @@
 class RelationshipsController < ApplicationController
+  before_action :authenticate_user!,except: [:top]
+  
   def create
     current_user.follow(params[:user_id])
     redirect_to request.referer

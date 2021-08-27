@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :correct_user, only:[:edit, :update]
+  before_action :authenticate_user!,except: [:top]
+  before_action :correct_user, only: [:edit, :update]
 
   def index
     @users = User.all
@@ -27,17 +28,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def unsubscribe
-    @user = User.find_by(name: params[:name])
-  end
-
-  def withdraw
-    @user = User.find_by(name: params[:name])
-    @user.update(unsubscribe: false)
-    reset_session
-    redirect_to root_path
-  end
-
   private
 
   def user_params
@@ -45,10 +35,9 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-      user = User.find(params[:id])
-      if user != current_user #ひとしくない時！＝
-      redirect_to user_path(current_user) #before actionでチェックしてるからelse不要
-      end
+    user = User.find(params[:id])
+    if user != current_user # ひとしくない時！＝
+      redirect_to user_path(current_user) # before actionでチェックしてるからelse不要
+    end
   end
-
 end

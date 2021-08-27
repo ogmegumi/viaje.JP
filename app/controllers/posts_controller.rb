@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!,except: [:top]
 
   def index
     @posts = Post.all.order(created_at: :desc)
@@ -13,6 +14,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @posts = Post.where(user_id: current_user.id)
     @post = Post.find(params[:id])
     @plan_day = PlanDay.new
     @user = @post.user
@@ -33,7 +35,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @tag_list = params[:post][:name].split(nil)
+    tag_list = params[:post][:name].split(nil)
     if @post.save
        @post.save_tag(tag_list)
        flash[:notice] = "You have created successfully."

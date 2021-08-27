@@ -1,4 +1,6 @@
 class PlanDaysController < ApplicationController
+  
+  before_action :authenticate_user!,except: [:top]
 
   # def index  !!renderへ変更!!
   #   @plan_days = PlanDay.all

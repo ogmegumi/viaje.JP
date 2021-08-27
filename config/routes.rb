@@ -18,8 +18,8 @@ Rails.application.routes.draw do
     get 'followers' => 'relationships#followers', as: 'followers'
    # ———————退会機能———————————————
     collection do
-      get 'unsubscribe'
-      patch 'withdraw' => 'users#withdraw'
+      get 'unsubscribe' => 'homes#unsubscribe'
+      patch 'withdraw' => 'homes#withdraw'
     end
  end
 
@@ -41,7 +41,6 @@ Rails.application.routes.draw do
     end
   end
   namespace :admin do
-    resources :tasks, except: [:show]
     resources :users, only: [:index, :show, :edit, :update ]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
