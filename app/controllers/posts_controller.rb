@@ -58,10 +58,12 @@ class PostsController < ApplicationController
 
   def update
    @post = Post.find(params[:id])
-   if @post.update(post_params)
-     flash[:notice] = "You have updated successfully."
-     redirect_to posts_path(@posts)
-   end
+   tag_list = params[:post][:name].split(nil)
+    if @post.save
+       @post.save_tag(tag_list)
+       flash[:notice] = "You have updateed successfully."
+       redirect_to posts_path(@posts)
+    end
   end
 
   def search

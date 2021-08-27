@@ -1,9 +1,9 @@
-    <table class="table d-block">
+    <table class="table">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">計画日</th>
-          <th scope="col">時間</th>
-          <th scope="col">計画内容</th>
+          <th scope="col-2">計画日</th>
+          <th scope="col-2">時間</th>
+          <th scope="col-4">計画内容</th>
           <th></th>
         </tr>
       </thead>
@@ -11,7 +11,9 @@
         <% plan_days.each do |day|%>
           <tr>
               <th scope="row">
-                <%= day.days.strftime("%F") %>
+               <% if post.user == current_user %>
+                 <%= day.days.strftime("%F") %>
+               <% end %>
               </th>
             <% day.plans.each do |plan| %>
               <th scope="row">
