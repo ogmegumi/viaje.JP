@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_23_003909) do
+ActiveRecord::Schema.define(version: 2021_08_18_043416) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -103,6 +103,10 @@ ActiveRecord::Schema.define(version: 2021_08_23_003909) do
     t.datetime "updated_at", null: false
     t.bigint "post", null: false
     t.bigint "tag", null: false
+    t.integer "post_id"
+    t.integer "tag_id"
+    t.index ["post_id"], name: "index_tags_relationships_on_post_id"
+    t.index ["tag_id"], name: "index_tags_relationships_on_tag_id"
   end
 
   create_table "tasks", force: :cascade do |t|

@@ -5,7 +5,7 @@ class CreateTagsRelationship < ActiveRecord::Migration[5.2]
       t.bigint :post, null: false
       t.bigint :tag, null: false
     end
-    add_foreign_key :tags_relationships, :post
-    add_foreign_key :tags_relationships, :tag
+    add_reference :tags_relationships, :post, foreign_key: true
+    add_reference :tags_relationships, :tag, foreign_key: true
   end
 end
