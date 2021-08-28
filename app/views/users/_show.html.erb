@@ -15,7 +15,14 @@
              <p>投稿数：<%= user.posts.count %></p>
              <p>フォロー数<%= user.followings.count %>人</p>
                <p>フォロワー数<%= user.followers.count %>人</p>
-               <% render "relationships/follow_button", user: user %>
+               <% if current_user.id != user.id %>
+                  <% if current_user.following?(user) %>
+                    <%= link_to "Unfollow", user_relationships_path(user.id), method: :delete, class:"btn btn-outline-secondary mt-3 mb-3 d-block" %>
+                  <% else %>
+                    <%= link_to "Follow", user_relationships_path(user.id), method: :post, class:"btn btn-outline-info mt-3 mb-3 d-block" %>
+                  <% end %>
+               <% end %>
+
             </div>
           </div>
         </div>
