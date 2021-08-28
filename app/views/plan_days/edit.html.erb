@@ -1,0 +1,47 @@
+<div class="containar">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">計画詳細</h5>
+      <p>※詳細ページではご自身のみ日付が表示されます。<p>
+      <div class="form-body p-4">
+       <% if @plan_day.errors.any? %>
+         <div id="error_explanation">
+           <%= @plan_day.errors.count %>件のエラーが発生しました
+           <% @plan_day.errors.full_messages.each do |message| %>
+             <%= message %>
+           <% end %>
+         </div>
+       <% end %>
+       <%= form_with model: @plan_day, url: post_plan_day_path(@post), local:true do |f| %>
+         <div class="input-group mb-3">
+             <div class="input-group-prepend">
+                <span class="input-group-text" aria-hidden="true"><i class="fas fa-history"></i></span>
+             </div>
+              <%= f.date_select :days, {}, class: 'form-control' %>
+         </div>
+         <%= f.fields_for :plans do |plan|%>
+           <div class="input-group mb-3 mt-4">
+               <div class="input-group-prepend">
+                  <span class="input-group-text" aria-hidden="true"><i class="fas fa-history"></i></span>
+               </div>
+               <%= plan.time_select(:start_time, {class:'select-date', id:"start-time", prompt:'--', time_separator: ':'}, ignore_data: true) %>
+           </div>
+           <div class="input-group mb-3 mt-4">
+               <div class="input-group-prepend">
+                  <span class="input-group-text" aria-hidden="true"><i class="fas fa-history"></i></span>
+               </div>
+               <%= plan.time_select(:finish_time, {class:'select-date', id:"start-time", prompt:'--', time_separator: ':'}, ignore_data: true) %>
+           </div>
+           <div class="input-group mb-3 mt-4">
+               <div class="input-group-prepend">
+                  <span class="input-group-text" aria-hidden="true"><i class="fas fa-clipboard"></i></span>
+               </div>
+               <%= plan.text_field :plan_content, class:"form-control", placeholder:"(例)1日目・計画行動" %>
+               <%#= f.hidden_field :post_id, value: @plan_day.post_id %><%#= f.hidden_field :plan_days_id, value: @post.plan_days_id %>
+           </div>
+          <% end %>
+             <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
+        <% end %>
+      </div>
+    </div>
+  </div>

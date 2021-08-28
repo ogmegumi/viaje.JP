@@ -19,7 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -65,15 +65,13 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
 gem 'font-awesome-sass', '~> 5.13'
 gem 'pry-byebug'
 gem 'kaminari'
-gem 'omniauth-facebook'                  # Facebook認証
-gem 'omniauth-twitter'                   # Twitter認証
-gem 'omniauth-google-oauth2'             # Google認証
 gem 'dotenv-rails'                       # 環境変数の管理
-
-gem 'dotenv-rails'
+gem 'geocoder'
+gem 'rubocop-airbnb'
 group :production do
   gem 'mysql2'
 end

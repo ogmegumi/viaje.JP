@@ -1,0 +1,222 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 rounded my-5 pr-5">
+      <div class="category h5 text-white strong text-center" style="background-color:#155CCF; padding:10px;">貴重品</div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          現金
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          クレジットカード
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          キャッシュカード
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+      <label class="form-check-label" for="defaultCheck1">
+        保険証
+      </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          免許証
+        </label>
+      </div>
+
+      <% @tasks1.each do |task| %>
+        <div class="form-check">
+          <%= check_box_tag :check %>
+          <%= label_tag :check, task.belongings %>
+          <% if task.user_id == current_user.id %>
+            <%= link_to "削除", user_task_path(task.user_id, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+            <%= link_to "編集", edit_user_task_path(task.user_id, task.id), class:"bbtn btn-outline-success btn-sm" %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="category h5 text-white strong text-center" style="background-color:#155CCF; padding:10px;">交通</div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          航空券・マイレージカード
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          ETCカード
+        </label>
+      </div>
+      <% @tasks2.each do |task| %>
+        <div class="index-item mb-20">
+          <%= check_box_tag :check %>
+          <%= label_tag :check, task.belongings %>
+          <% if task.user_id == current_user.id %>
+            <%= link_to "削除", user_task_path(task.user_id, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+            <%= link_to "編集", edit_user_task_path(task.user_id, task.id), class:"bbtn btn-outline-success btn-sm" %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="category h5 text-white strong text-center" style="background-color:#155CCF; padding:10px;">電子機器</div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          スマートフォン・モバイルバッテリー
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          カメラ
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          充電器
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          PC・タブレット
+        </label>
+      </div>
+        <% @tasks3.each do |task| %>
+          <div class="index-item mb-20">
+            <%= check_box_tag :check %>
+            <%= label_tag :check, task.belongings %>
+          <% if task.user_id == current_user.id %>
+            <%= link_to "削除", user_task_path(task.user_id, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+            <%= link_to "編集", edit_user_task_path(task.user_id, task.id), class:"bbtn btn-outline-success btn-sm" %>
+          <% end %>
+          </div>
+        <% end %>
+
+      <div class="category h5 text-white strong text-center" style="background-color:#155CCF; padding:10px;">洗面用具</div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          化粧品・生理用品
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          整髪剤
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          コンタクトレンズ・メガネ・洗浄液
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          髭剃り・剃刀（※宿泊先のアメニティー確認）
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          シャンプー・リンス・洗顔・石鹸（※宿泊先のアメニティー確認）
+        </label>
+      </div>
+        <% @tasks4.each do |task| %>
+          <div class="index-item mb-20">
+            <%= check_box_tag :check %>
+            <%= label_tag :check, task.belongings %>
+          <% if task.user_id == current_user.id %>
+            <%= link_to "削除", user_task_path(task.user_id, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+            <%= link_to "編集", edit_user_task_path(task.user_id, task.id), class:"bbtn btn-outline-success btn-sm" %>
+          <% end %>
+          </div>
+        <% end %>
+
+      <div class="category h5 text-white strong text-center" style="background-color:#155CCF; padding:10px;">衣類</div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          下着・靴下
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          洋服・靴
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          ハンカチ・ティッシュ・除菌グッズ
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          タオル（※宿泊先のアメニティー確認）
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          水着
+        </label>
+      </div>
+      <% @tasks5.each do |task| %>
+        <div class="index-item mb-20">
+          <%= check_box_tag :check %>
+          <%= label_tag :check, task.belongings %>
+          <% if task.user_id == current_user.id %>
+            <%= link_to "削除", user_task_path(task.user_id, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+            <%= link_to "編集", edit_user_task_path(task.user_id, task.id), class:"bbtn btn-outline-success btn-sm" %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="category h5 text-white strong text-center" style="background-color:#155CCF; padding:10px;">その他</div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          サングラス
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          帽子
+        </label>
+      </div>
+        <% @tasks6.each do |task| %>
+          <div class="index-item mb-20">
+            <%= check_box_tag :check %>
+            <%= label_tag :check, task.belongings %>
+          <% if task.user_id == current_user.id %>
+            <%= link_to "削除", user_task_path(task.user_id, task.id), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+            <%= link_to "編集", edit_user_task_path(task.user_id, task.id), class:"bbtn btn-outline-success btn-sm" %>
+          <% end %>
+          </div>
+        <% end %>
+      </div>
+        <div class="col-md-5 text-center rounded px-0 my-5">
+          <h5 class="text-dark bg-light p-4 mb-0">忘れ物リスト追加</h5>
+           <div class="form-body p-4">
+             <%= render "new", task: @task %>
+           </div>
+        </div>
+   </div>
+</div>

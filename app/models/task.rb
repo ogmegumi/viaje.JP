@@ -1,3 +1,3 @@
 class Task < ApplicationRecord
-  belongs_to :user
+   validates :belongings, presence: true
 end

@@ -1,2 +1,25 @@
-<h1>Memos#edit</h1>
-<p>Find me in app/views/memos/edit.html.erb</p>
+<div class="containar">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">持ち物リスト投稿</h5>
+      <div class="form-body p-4">
+       <% if @memo.errors.any? %>
+         <div id="error_explanation">
+           <%= @memo.errors.count %>件のエラーが発生しました
+           <% @memo.errors.full_messages.each do |message| %>
+             <%= message %>
+           <% end %>
+         </div>
+       <% end %>
+       <%= form_with model: @memo, url: user_memo_path(@memo), local:true do |f| %>
+       <div class="input-group mb-3 mt-4">
+           <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-suitcase"></i></span>
+           </div>
+           <%= f.text_field :memo, class:"form-control", placeholder:"memo" %>
+         </div>
+         <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
+       <% end %>
+      </div>
+    </div>
+  </div>

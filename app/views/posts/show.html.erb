@@ -1,2 +1,68 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+  <!---------投稿内容表示-------------->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+          <h2><i class="fas fa-map-marker-alt"></i>
+            google mapで観光地の検索
+          </h2>
+          <!-- 地名入力用のinputを追加 -->
+          <input id="address" type="textbox" value="沖縄, OKA">
+
+          <!-- buttonをクリックしたらcodeAddressを実行-->
+          <input type="button" value="Encode" onclick="codeAddress()">
+          <div id="map"></div>
+
+          <style>
+            #map{
+              width: 400px;
+              height: 400px;
+            }
+          </style>
+
+          <script>
+            /*mapを関数の外で定義(codeAddressでも使うため)geocoderを用意*/
+            let map
+            let geocoder
+            function initMap(){
+              // geocoderを初期化
+              geocoder = new google.maps.Geocoder()
+
+              map = new google.maps.Map(document.getElementById('map'), {
+                 center: {lat: 26.30230759545399, lng: 127.65309297478275},
+                 zoom: 8
+                });
+              }
+
+            function codeAddress(){
+              // 入力を取得
+              let inputAddress = document.getElementById('address').value;
+
+              // geocodingしたあとmapを移動
+              geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+                if (status == 'OK') {// map.setCenterで地図が移動
+                  map.setCenter(results[0].geometry.location);// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+                  var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                  });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                  }
+               });
+              }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+      </div>
+      <!---------計画内容表示-------------->
+      <div class="col-md-5">
+        <h4 class="text-center">旅行計画詳細</h4>
+         <% if @post.user == current_user %>
+            <div class="h4 text-right">
+              <%= link_to "plan_days", new_post_plan_day_path(@post), class: "btn btn-secondary fas fa-plus-circle" %>
+            </div>
+         <% end %>
+        <%= render "plan_days/index", plan_days: @plan_days, post: @post %>
+      </div>
+      <%= render "post_plan", post: @post, user: @user, post_comment: @post_comment %>
+    </div>
+  </div>

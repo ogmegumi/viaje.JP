@@ -5,7 +5,7 @@
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+      <script src="https://kit.fontawesome.com/efe3d01fd5.js" crossorigin="anonymous"></script>
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     </head>
@@ -13,9 +13,9 @@
     <body class="d-flex flex-column vh-100">
       <%= render 'layouts/header' %>
       <main>
-        <p id="notice"><%= notice %></p>
+        <p class="notice", style="color: green"><%= notice %></p>
         <%= yield %>
       </main>
-
+      <%= render 'layouts/footer' %>
     </body>
 </html>

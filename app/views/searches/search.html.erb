@@ -1,0 +1,17 @@
+<% if @model == 'user' %>
+   <div class="container">
+      <h3 class="text-center">ユーザー一覧for "<%= @content %>"</h3><br>
+
+     <div class="row">
+       <%= render "users/show", users: @records %>
+     </div>
+   </div>
+
+<% elsif @model == 'post' %>
+   <div class="container">
+      <h3 class="text-center">投稿検索 "<%= @content %>"</h3><br>
+      <div class="row">
+          <%= render "posts/search_show", posts: @records %>
+      </div>
+   </div>
+<% end %>

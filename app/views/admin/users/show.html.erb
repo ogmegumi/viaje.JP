@@ -1,0 +1,24 @@
+<% provide(:title, "会員一覧") %>
+<ul class="list-group text-center" style="width: 50%; margin-left: 25%;">
+  <li class="list-group-item h3  list-group-item-info"><%= @user.name %>さんの会員詳細</li>
+  <li class="list-group-item">
+    顧客ID：<%= @user.id %>
+  </li>
+  <li class="list-group-item">
+    ユーザーネーム：<%= @user.name %>
+  </li>
+  <li class="list-group-item">
+    メールアドレス：<%= @user.email%>
+  </li>
+  <li class="list-group-item">
+  <% if @user.unsubscribe == true %>
+    <span><i class="fas fa-bullseye blue"></i>退会済
+  <% elsif @user.unsubscribe == false %>
+    <i class="fas fa-bullseye red"></i>有効会員</span>
+  <% end %>
+  </li>
+</ul>
+ <div class="actions text-center">
+    <%= link_to "編集する",edit_admin_user_path(@user), class: "glyphicon glyphicon-pencil btn btn-success edit_shipping_addres_#{@user.id}" %>
+    <%= link_to "戻る", admin_user_path, class: "glyphicon glyphicon-home btn btn-info" %>
+</div>

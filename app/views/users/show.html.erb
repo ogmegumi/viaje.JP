@@ -1,2 +1,59 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-5">
+      <div class="avatar">
+        <%= attachment_image_tag(@user, :profile_image, :fill, 200, 200, class:"mt-3 rounded-circle", fallback: "noimage.png", size:"200x200") %>
+      </div>
+    </div>
+
+    <div class="col-md-7 mx-auto">
+      <div class="user_name">
+        <h3><%= @user.name %></h3>
+      </div>
+      <div class="info">
+        <i class="far fa-comment-dots mr-3"><%= @user.posts.count %></i>
+        follows<%= link_to @user.followings.count, user_followings_path(@user), class: "user_#{@user.id} mr-3" %>
+        followers<%= link_to @user.followers.count, user_followers_path(@user), class: "user_#{@user.id}" %>
+      </div>
+      <span class="follow-btn">
+        <%= render "relationships/follow_button", user: @user %>
+      </span>
+      <div class="introduction">
+        <h6>自己紹介文</h6>
+          <%= @user.introduction %>
+      </div>
+      <% if @user.unsubscribe == true %>
+         <p><i class="fas fa-bullseye blue"></i>退会済</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+  <% if @user == current_user %>
+    <div class="container-fluid"><!--<footer>-->
+      <div class="row">
+          <div class="col text-center">
+              <%= link_to "memo", user_memos_path(@user), method: :get, class:"btn btn-outline-secondary d-block fas fa-book-open" %>
+          </div>
+          <div class="col text-center">
+              <%= link_to "忘れ物管理", user_tasks_path(@user), method: :get, class:"btn btn-outline-secondary d-block far fa-check-circle" %>
+          </div>
+          <div class="col text-center">
+              <%= link_to 'edit',edit_user_path(current_user),class: "btn btn-outline-secondary d-block fas fa-user-cog edit_user_#{@user.id}" %>
+          </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="container mt-5">
+    <div class="row d-flex">
+        <% @posts.each do |post| %>
+          <div class="col-md-4">
+            <span class="img_container">
+              <%= link_to post_show_post_path(post) do %>
+                <%= attachment_image_tag post, :image, class:"card-img-top", size: "200x200" %>
+              <% end %>
+            </span>
+          </div>
+        <% end %>
+    </div>
+  </div>
