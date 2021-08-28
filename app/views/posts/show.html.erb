@@ -52,20 +52,17 @@
               }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+      </div>
+      <!---------計画内容表示-------------->
+      <div class="col-md-5">
+        <h4 class="text-center">旅行計画詳細</h4>
+         <% if @post.user == current_user %>
+            <div class="h4 text-right">
+              <%= link_to "plan_days", new_post_plan_day_path(@post), class: "btn btn-secondary fas fa-plus-circle" %>
+            </div>
+         <% end %>
+        <%= render "plan_days/index", plan_days: @plan_days, post: @post %>
+      </div>
+      <%= render "post_plan", post: @post, user: @user, post_comment: @post_comment %>
     </div>
-    <!---------計画内容表示-------------->
-    <div class="col-md-5">
-      <h4 class="text-center">旅行計画詳細</h4>
-       <% if @post.user == current_user %>
-          <div class="h4 text-right">
-            <%= link_to "plan_days", new_post_plan_day_path(@post), class: "btn btn-secondary fas fa-plus-circle" %>
-          </div>
-       <% end %>
-      <%= render "plan_days/index", plan_days: @plan_days, post: @post %>
-    </div>
-    <%= render "show", posts: @posts, user: @user %>
   </div>
-
-
-
-

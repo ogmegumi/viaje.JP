@@ -54,12 +54,6 @@
               <div id="comment_<%= post.id %>">
                 <%= render "post_comments/comment", post: post %>
               </div>
-              <span id="form_<%= post.id %>">
-                 <%= form_with model:[post, @post_comment], remtote: true do |f| %>
-                   <%= f.text_area :comment, :size => "60x1", class: "form-control", placeholder: "コメントをここに" %>
-                   <%= f.submit "送信する", class: "d-flex btn btn-outline-secondary", id: "submit" %>
-                 <% end %>
-              </span>
             </div>
           </div>
         </div>

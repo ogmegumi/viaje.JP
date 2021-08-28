@@ -1,5 +1,4 @@
-<% posts.each do |post| %>
- <div class="col-md-6 mt-5">
+<div class="col-md-6 mt-5">
     <div class="card-wrap">
       <div class="card">
         <div class="card-header align-items-center d-flex">
@@ -55,7 +54,7 @@
                 <%= render "post_comments/comment", post: post %>
               </div>
               <span id="form_<%= post.id %>">
-                 <%= form_with model:[post, @post_comment], remtote: true do |f| %>
+                 <%= form_with model:[post, post_comment], remtote: true do |f| %>
                    <%= f.text_area :comment, :size => "60x1", class: "form-control", placeholder: "コメントをここに" %>
                    <%= f.submit "送信する", class: "d-flex btn btn-outline-secondary", id: "submit" %>
                  <% end %>
@@ -65,5 +64,3 @@
         </div>
       </div>
     </div>
-<% end %>
-

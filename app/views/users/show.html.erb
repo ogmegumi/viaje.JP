@@ -17,18 +17,15 @@
         followers<%= link_to @user.followers.count, user_followers_path(@user), class: "user_#{@user.id}" %>
       </div>
       <span class="follow-btn">
-        <% if current_user != @user %>
-           <% if current_user.following?(@user) %>
-             <%=link_to "u n f o l l o w",user_relationships_path(@user.id),class: "btn btn-outline-secondary d-block mx-auto", method: :delete %>
-           <% else %>
-             <%=link_to "f o l l o w", user_relationships_path(@user.id),class: "btn btn-outline-info d-block mx-auto", method: :post %>
-           <% end %>
-        <% end %>
+        <%= render "relationships/follow_button", user: @user %>
       </span>
       <div class="introduction">
         <h6>自己紹介文</h6>
           <%= @user.introduction %>
       </div>
+      <% if @user.unsubscribe == true %>
+         <p><i class="fas fa-bullseye blue"></i>退会済</p>
+      <% end %>
     </div>
   </div>
 </div>
