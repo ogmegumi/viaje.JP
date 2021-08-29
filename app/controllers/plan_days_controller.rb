@@ -14,11 +14,6 @@ class PlanDaysController < ApplicationController
     @plans = @plan_day.plans.build
   end
 
-  def edit
-    @post = Post.find(params[:post_id])
-    @plan_day = PlanDay.find(params[:id])
-  end
-
   def create
     @post = Post.find(params[:post_id])
     @plan_day = PlanDay.new(day_params)
@@ -37,6 +32,11 @@ class PlanDaysController < ApplicationController
     redirect_to post_path(@plan_day.post_id)
   end
 
+  def edit
+    @post = Post.find(params[:post_id])
+    @plan_day = PlanDay.find(params[:id])
+  end
+
   def update
     @post = Post.find(params[:post_id])
     @plan_day = PlanDay.find(params[:id])
@@ -46,7 +46,7 @@ class PlanDaysController < ApplicationController
 
   private
   def day_params
-    params.require(:plan_day).permit(:days, [plans_attributes: [:start_time, :finish_time, :plan_content]])
+    params.require(:plan_day).permit(:days, [plans_attributes: [:id, :start_time, :finish_time, :plan_content]])
   end
 
 end

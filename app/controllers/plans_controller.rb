@@ -10,42 +10,42 @@ class PlansController < ApplicationController
   #   # @days = @day.plans
   # end
 
-  def new
-    @plan = Plan.new
-  end
+  # def new
+  #   @plan = Plan.new
+  # end
 
-  def edit
-    @plan = Plan.find(params[:id])
-  end
+  # def edit
+  #   # @plan = Plan.find(params[:id])
+  # end
 
-  def create
-    @post = Post.find(params[:post_id])
-    @plan_day = PlanDay.new(plan_params)
-    # @plan.post_id = @post.id
-    @plan.plan_days_id = @plan_days.id
-    if @plan.save
-      redirect_to post_path(@plan.post)
-    else
-      render :new
-    end
-  end
+  # def create
+  #   @post = Post.find(params[:post_id])
+  #   @plan_day = PlanDay.new(plan_params)
+  #   # @plan.post_id = @post.id
+  #   @plan.plan_days_id = @plan_days.id
+  #   if @plan.save
+  #     redirect_to post_path(@plan.post)
+  #   else
+  #     render :new
+  #   end
+  # end
 
 
-  def update
-    @plan = Plan.find(params[:id])
-    @plan.update(plan_params)
-    redirect_to post_path(@plan.post_id)
-  end
+  # def update
+  #   @plan = Plan.find(params[:id])
+  #   @plan.update(plan_params)
+  #   redirect_to post_path(@plan.post_id)
+  # end
 
-  def destroy
-    @plan = Plan.find(params[:id])
-    @plan.destroy
-    redirect_to post_path(@plan.post_id)
-  end
+  # def destroy
+  #   @plan = Plan.find(params[:id])
+  #   @plan.destroy
+  #   redirect_to post_path(@plan.post_id)
+  # end
 
-  private
-  def plan_params
-    params.require(:plan).permit(:start_time, :finish_time, :plan_content, :days)
-  end
+  # private
+  # def plan_params
+  #   params.require(:plan).permit(:start_time, :finish_time, :plan_content, :days)
+  # end
 
 end

@@ -38,6 +38,7 @@
                </div>
                <%= plan.text_field :plan_content, class:"form-control", placeholder:"(例)1日目・計画行動" %>
                <%#= f.hidden_field :post_id, value: @plan_day.post_id %><%#= f.hidden_field :plan_days_id, value: @post.plan_days_id %>
+               <%= f.hidden_field :id, value: @plan_day.id %>
            </div>
           <% end %>
              <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>

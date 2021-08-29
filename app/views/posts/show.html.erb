@@ -58,7 +58,7 @@
         <h4 class="text-center">旅行計画詳細</h4>
          <% if @post.user == current_user %>
             <div class="h4 text-right">
-              <%= link_to "plan_days", new_post_plan_day_path(@post), class: "btn btn-secondary fas fa-plus-circle" %>
+              <%= link_to "投稿", new_post_plan_day_path(@post), class: "btn btn-secondary fas fa-plus-circle" %>
             </div>
          <% end %>
         <%= render "plan_days/index", plan_days: @plan_days, post: @post %>

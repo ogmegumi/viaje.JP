@@ -1,4 +1,7 @@
   <div class="container">
+      <%= link_to new_post_path, class: 'nav-link text-dark btn btn-outline-secondary btn-lg mr-3' do %>
+        <i class="fas fa-marker"></i>
+      <% end %>
     <div class="row">
       <%= render 'index', posts: @posts, user: @user %>
     </div>
