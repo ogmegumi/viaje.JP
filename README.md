@@ -1,4 +1,4 @@
-![viaje](https://user-images.githubusercontent.com/83824978/131249818-2c0dfe38-6396-4580-92e9-354605b036d6.jpg)
+
 # viaje.JP
 
 ## サイト概要
@@ -40,7 +40,7 @@ https://docs.google.com/presentation/d/1ha_b7hBif_EwmN7mtgs1ISvDtE4uB2ZREnieTiMw
 
 <ER図>
 
-<img src="![viaje](https://user-images.githubusercontent.com/83824978/131249825-84ba9811-a0ae-49c1-a9fe-568a24301adf.jpg)" width="320px" height="300px">
+<img src="https://user-images.githubusercontent.com/83824978/131249825-84ba9811-a0ae-49c1-a9fe-568a24301adf.jpg" width="320px" height="300px">
 
 <テーブル定義書>
 https://docs.google.com/spreadsheets/d/12CsWAKGr0DOsbW3_-Sxs2yoYDsKRK2kwMn0HjRB8Lek/edit?usp=sharing
