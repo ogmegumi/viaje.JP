@@ -58,5 +58,5 @@ https://docs.google.com/spreadsheets/d/1RnzuZcs5wlOSk9yMSqjYjSpqi2DKDlmdzYNlZd_z
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-## 使用素材※追記予定
+## 使用素材
 - googlemap API(https://developers.google.com/maps/documentation/distance-matrix/overview?hl=ja)
