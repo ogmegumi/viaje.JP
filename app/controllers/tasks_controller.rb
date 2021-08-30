@@ -10,7 +10,8 @@ class TasksController < ApplicationController
     @tasks4 = Task.where(category: "task4", user_id: current_user.id)
     @tasks5 = Task.where(category: "task5", user_id: current_user.id)
     @tasks6 = Task.where(category: "task6", user_id: current_user.id)
-
+    
+    # 今後の修正予定
     #@task_categories = Task.select(:category).distinct.pluck(:category) 
     #カテゴリーモデルを作って、部分プレートで行うと完成度高くなる。カテゴリーをSQLからselectして取得
 

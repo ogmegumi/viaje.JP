@@ -21,8 +21,8 @@ class PostCommentsController < ApplicationController
   private
 
   def post_comment_params
-    params.require(:post_comment).permit(:comment)#merge(user_id: current_user.id, post_id: params[:post_id])
-    # mergeメソッドでuser_idとpost_idをcommentテーブルのレコードに格納
+    params.require(:post_comment).permit(:comment)#xxx merge(user_id: current_user.id, post_id: params[:post_id]) xxx
+    # id付与させることでmerge不要とするxxx mergeメソッドでuser_idとpost_idをcommentテーブルのレコードに格納をxxx
   end
 
 end

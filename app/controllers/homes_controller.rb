@@ -3,7 +3,8 @@ class HomesController < ApplicationController
 
    def top
    end
-
+   
+  # 退会機能boolean型を
    def unsubscribe
      @user = current_user
    end

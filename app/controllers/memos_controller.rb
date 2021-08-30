@@ -2,7 +2,7 @@ class MemosController < ApplicationController
   before_action :authenticate_user!,except: [:top]
 
   def index
-    @memos = Memo.where(user_id: current_user.id)
+    @memos = Memo.where(user_id: current_user.id)  #userに紐づけることで他のuserが見れない
     @memo = Memo.new
     @user = current_user
     @user = @memo.user
@@ -10,7 +10,7 @@ class MemosController < ApplicationController
 
   def create
     @memo = Memo.new(memo_params)
-    @memo.user_id = current_user.id
+    @memo.user_id = current_user.id #アソシエーション
     if @memo.save
        flash[:notice] = "You have created Task successfully"
        redirect_to user_memos_path(@memo.user_id)

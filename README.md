@@ -30,16 +30,16 @@
 - その他旅行関連に関することをメモしたい時
 - 旅行先で計画書の確認をする時
 
-## 設計書※追記予定
-<要件定義書※編集中>
+## 設計書
+<要件定義書>
 https://docs.google.com/document/d/1J62_qWziub5DLV5zWh4ck_rYDiDwmLBOndeHc1tQMCk/edit?usp=sharing
 
-<画面設計※編集中>
+<画面設計>
 https://docs.google.com/presentation/d/1ha_b7hBif_EwmN7mtgs1ISvDtE4uB2ZREnieTiMwsXI/edit?usp=sharing
 
 <ER図>
 
-<img src="https://user-images.githubusercontent.com/83824978/128658763-89d0daa7-957d-4ae7-933a-0a6fff566a06.png" width="320px" height="300px">
+<img src="" width="320px" height="300px">
 
 <テーブル定義書>
 https://docs.google.com/spreadsheets/d/12CsWAKGr0DOsbW3_-Sxs2yoYDsKRK2kwMn0HjRB8Lek/edit?usp=sharing

@@ -11,7 +11,7 @@ class PlanDaysController < ApplicationController
   def new
     @post = Post.find(params[:post_id])
     @plan_day = PlanDay.new
-    @plans = @plan_day.plans.build
+    @plans = @plan_day.plans.build #buildでattributesしているモデルを取得
   end
 
   def create
@@ -45,7 +45,7 @@ class PlanDaysController < ApplicationController
   end
 
   private
-  def day_params
+  def day_params #plans_attributesでplan tableもupdateさせ:idをつけることで編集時plan_id(hiddenで)の取得が可能
     params.require(:plan_day).permit(:days, [plans_attributes: [:id, :start_time, :finish_time, :plan_content]])
   end
 

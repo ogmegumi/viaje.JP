@@ -1,5 +1,8 @@
 class PlansController < ApplicationController
-  before_action :authenticate_user!,except: [:top]
+  
+  # すべてplan_daysに移行させて一緒に取得
+  
+  # before_action :authenticate_user!,except: [:top]
   # def index /////post_showに移行のため削除
   #   @post = Post.find(params[:id])
   #   @plans = Plan.where(post_id: params[:id])
