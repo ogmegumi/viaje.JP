@@ -1,3 +1,4 @@
+
 # viaje.JP
 
 ## サイト概要
@@ -37,9 +38,9 @@ https://docs.google.com/document/d/1J62_qWziub5DLV5zWh4ck_rYDiDwmLBOndeHc1tQMCk/
 <画面設計>
 https://docs.google.com/presentation/d/1ha_b7hBif_EwmN7mtgs1ISvDtE4uB2ZREnieTiMwsXI/edit?usp=sharing
 
-<ER図>
+<ER>
 
-<img src="" width="320px" height="300px">
+<img src="https://user-images.githubusercontent.com/83824978/131249825-84ba9811-a0ae-49c1-a9fe-568a24301adf.jpg" width="320px" height="300px">
 
 <テーブル定義書>
 https://docs.google.com/spreadsheets/d/12CsWAKGr0DOsbW3_-Sxs2yoYDsKRK2kwMn0HjRB8Lek/edit?usp=sharing
@@ -57,5 +58,5 @@ https://docs.google.com/spreadsheets/d/1RnzuZcs5wlOSk9yMSqjYjSpqi2DKDlmdzYNlZd_z
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-## 使用素材※追記予定
+## 使用素材
 - googlemap API(https://developers.google.com/maps/documentation/distance-matrix/overview?hl=ja)
