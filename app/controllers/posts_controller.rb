@@ -36,9 +36,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    tag_list = params[:post][:name].split(nil)
+    @post.score = Language.get_data(post_params[:content])  #自然言語API
+    tag_list = params[:post][:name].split(nil) #formから、@postオブジェクトを参照してタグの名前も一緒に送信、スペースで区切って配列化
     if @post.save
-       @post.save_tag(tag_list)
+       @post.save_tag(tag_list) #モデルで定義
        flash[:notice] = "You have created successfully."
        redirect_to posts_path
     else
