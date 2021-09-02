@@ -1,0 +1,17 @@
+<% post.tags.first(3).each do |list| %>
+    <%= link_to list.name, tag_posts_path(tag_id: list.id), class: "btn btn-outline-info btn-sm" %>
+     (<%= list.posts.count %>)
+<% end %>
+<p>
+  <a class="" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+    ...more
+  </a>
+</p>
+<div class="collapse multi-collapse" id="multiCollapseExample1">
+  <div class="card-body">
+        <% post.tags.offset(3).each do |list| %>
+          <%= link_to list.name, tag_posts_path(tag_id: list.id), class: "btn btn-outline-info btn-sm" %>
+            (<%= list.posts.count %>)
+        <% end %>
+  </div>
+</div>

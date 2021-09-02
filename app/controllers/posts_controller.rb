@@ -40,6 +40,10 @@ class PostsController < ApplicationController
     tag_list = params[:post][:name].split(nil) #formから、@postオブジェクトを参照してタグの名前も一緒に送信、スペースで区切って配列化
     if @post.save
        @post.save_tag(tag_list) #モデルで定義
+       tags = Vision.get_image_data(@post.image)
+       tags.each do |tag|
+        @post.tags.create(name: tag)
+      end
        flash[:notice] = "You have created successfully."
        redirect_to posts_path
     else
@@ -60,9 +64,14 @@ class PostsController < ApplicationController
 
   def update
    @post = Post.find(params[:id])
-   tag_list = params[:post][:name].split(nil)
+   @post.score = Language.get_data(post_params[:content])  #自然言語API
+    tag_list = params[:post][:name].split(nil) #formから、@postオブジェクトを参照してタグの名前も一緒に送信、スペースで区切って配列化
     if @post.save
-       @post.save_tag(tag_list)
+       @post.save_tag(tag_list) #モデルで定義
+       tags = Vision.get_image_data(@post.image)
+       tags.each do |tag|
+        @post.tags.create(name: tag)
+      end
        flash[:notice] = "You have updateed successfully."
        redirect_to posts_path(@posts)
     end

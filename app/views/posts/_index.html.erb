@@ -56,12 +56,11 @@
             <p class="card-text text-dark ml-3">
               <%= post.content %>
             </p>
+            <!-------自然言語API--------->
             <span class="sentiment-score">本文の感情分析スコア[<%= post.score %>]</span>
+            <!-------VISION API auto:tag--------->
             <div class="tag_list">
-              <% post.tags.each do |list| %>
-                <%= link_to list.name, tag_posts_path(tag_id: list.id), class: "btn btn-outline-info btn-sm" %>
-                  (<%= list.posts.count %>)
-              <% end %>
+              <%= render "posts/tag", post: post %>
             </div>
             <hr>
             <div class="row d-block">
