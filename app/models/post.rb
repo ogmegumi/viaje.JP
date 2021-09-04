@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :plan_days, dependent: :destroy
-  has_many :tags_relationships, dependent: :destroy
+  has_many :tags_relationships, dependent: :delete_all
   has_many :tags, through: :tags_relationships # throughオプションによって、tag_relationshipsテーブルを通してtagsテーブルとの関連付け
 
   def favorited_by?(user)

@@ -37,13 +37,14 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.score = Language.get_data(post_params[:content])  #自然言語API
-    tag_list = params[:post][:name].split(nil) #formから、@postオブジェクトを参照してタグの名前も一緒に送信、スペースで区切って配列化
+    @tag_list = params[:post][:name].split(nil) #formから、@postオブジェクトを参照してタグの名前も一緒に送信、スペースで区切って配列化
     if @post.save
-       @post.save_tag(tag_list) #モデルで定義
+       @post.save_tag(@tag_list) #モデルで定義
        tags = Vision.get_image_data(@post.image)
        tags.each do |tag|
-        @post.tags.create(name: tag)
-      end
+         saved_tag = Tag.find_or_create_by(name:tag) # カラムの中から同じ値がないか探して、あればそのままfindの動き、なければcreateの動きで新たにカラムに保存
+         TagsRelationship.find_or_create_by(tag_id:saved_tag.id,post_id:@post.id)
+       end
        flash[:notice] = "You have created successfully."
        redirect_to posts_path
     else
@@ -60,27 +61,29 @@ class PostsController < ApplicationController
 
   def edit
    @post = Post.find(params[:id])
+   @tag_list = @post.tags.pluck(:name).split(nil)# 特定のカラムデータのみ参照pluckメソッドは、SQLの段階から取得するカラムのデータを絞り込んでいる
   end
 
   def update
    @post = Post.find(params[:id])
    @post.score = Language.get_data(post_params[:content])  #自然言語API
-    tag_list = params[:post][:name].split(nil) #formから、@postオブジェクトを参照してタグの名前も一緒に送信、スペースで区切って配列化
-    if @post.save
-       @post.save_tag(tag_list) #モデルで定義
+   @tag_list = params[:post][:name].split(nil)
+    if @post.update(post_params)
+       @post.save_tag(@tag_list) #save_tagモデルで定義
        tags = Vision.get_image_data(@post.image)
        tags.each do |tag|
-        @post.tags.create(name: tag)
-      end
+         saved_tag = Tag.find_by(name:tag)
+         TagsRelationship.find_by(tag_id:saved_tag.id,post_id:@post.id)
+       end
        flash[:notice] = "You have updateed successfully."
        redirect_to posts_path(@posts)
     end
   end
 
   def search
-    @tag_list = Tag.all  #こっちの投稿一覧表示ページでも全てのタグを表示するために、タグを全取得
+    @tags = Tag.all  #こっちの投稿一覧表示ページでも全てのタグを表示するために、タグを全取得
     @tag = Tag.find(params[:tag_id])  #クリックしたタグを取得
-    @posts = @tag.posts.all  #クリックしたタグに紐付けられた投稿を全て表示
+    @posts = @tag.posts.page(params[:page]).per(10)  #クリックしたタグに紐付けられた投稿を全て表示
   end
 
   private

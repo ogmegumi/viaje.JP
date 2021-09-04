@@ -5,10 +5,10 @@
       <strong><%= @tag.name %></strong>
     </div>
     <div class="tag-list">
-      <% @tag_list.each do |list| %>
+      <% @tags.each do |list| %>
        <span>
-          <%= link_to list.name, tag_posts_path(tag_id: list.id) %>
-          (<%= list.posts.count %>)
+          <%= link_to list.name, tag_posts_path(tag_id: list.id), class: "btn btn-outline-secondary" %>
+           (<%= list.posts.count %>)
        </span>
      <% end %>
    </div>
@@ -70,4 +70,8 @@
     </div>
   </div>
 <% end %>
+
+<div class="pagination pagination-sm justify-content-center">
+       <%= paginate @posts %></div>
+</div>
 
