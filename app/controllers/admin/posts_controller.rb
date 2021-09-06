@@ -1,9 +1,10 @@
 class Admin::PostsController < ApplicationController
-  
-  
+
+
   def index
     @posts = Post.order(created_at: :desc).page(params[:page]).per(12)
     @user = current_user
+    @post_comments = PostComment
   end
 
   def show
@@ -43,4 +44,4 @@ class Admin::PostsController < ApplicationController
   end
 
 end
-  
+

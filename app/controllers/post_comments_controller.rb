@@ -1,11 +1,12 @@
 class PostCommentsController < ApplicationController
   before_action :authenticate_user!,except: [:top]
-  
+
   def create
     @post = Post.find(params[:post_id])
     @post_comment = PostComment.new(post_comment_params)
     @post_comment.post_id = @post.id
     @post_comment.user_id = current_user.id
+    @post_comment.comment_score = Language.get_data(post_comment_params[:comment])
     @post_comment.save
     # redirect_to posts_path
     # app/views/post_comments/create.js.erbを参照する
