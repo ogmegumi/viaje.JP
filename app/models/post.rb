@@ -19,6 +19,8 @@ class Post < ApplicationRecord
   validates :destination, presence: true
   validates :image,       presence: true
 
+  enum status: {closed: 2, draft: 1, published: 0}
+
   def self.search_for(content, method)
     if method == 'perfect'
       Post.where(content: content, destination: content, budget: content)

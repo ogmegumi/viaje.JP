@@ -33,19 +33,23 @@
     <div class="container-fluid"><!--<footer>-->
       <div class="row">
           <div class="col text-center">
-              <%= link_to "memo", user_memos_path(@user), method: :get, class:"btn btn-outline-secondary d-block fas fa-book-open" %>
+            <%= link_to "memo", user_memos_path(@user), method: :get, class: "btn btn-outline-secondary d-block fas fa-book-open" %>
           </div>
           <div class="col text-center">
-              <%= link_to "忘れ物管理", user_tasks_path(@user), method: :get, class:"btn btn-outline-secondary d-block far fa-check-circle" %>
+            <%= link_to "忘れ物管理", user_tasks_path(@user), method: :get, class: "btn btn-outline-secondary d-block far fa-check-circle" %>
           </div>
           <div class="col text-center">
-              <%= link_to 'edit',edit_user_path(current_user),class: "btn btn-outline-secondary d-block fas fa-user-cog edit_user_#{@user.id}" %>
+            <%= link_to 'edit',edit_user_path(current_user), class: "btn btn-outline-secondary d-block fas fa-user-cog edit_user_#{@user.id}" %>
+          </div>
+          <div class="col text-center">
+            <%=link_to "下書き一覧", confirm_user_path(@user), class: "btn btn-outline-secondary d-block far fa-sticky-note" %>
           </div>
       </div>
     </div>
   <% end %>
   <div class="container mt-5">
     <div class="row d-flex">
+
         <% @posts.each do |post| %>
           <div class="col-md-4">
             <span class="img_container">

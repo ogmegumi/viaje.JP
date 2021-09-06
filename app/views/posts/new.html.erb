@@ -1,7 +1,11 @@
 <div class="containar">
   <div class="row no-gutters">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
-      <h5 class="text-dark bg-light p-4 mb-0">見出し投稿フォーム</h5>
+      <div class="text-dark bg-light p-4 mb-0">
+        <h5 class="text-center">見出し投稿フォーム</h5>
+        <p>※本文内容にて不適切と判断した場合は、管理者側で非公開とさせていただきます。</p>
+      </div>
+      
       <div class="form-body p-4">
        <% if @post.errors.any? %>
         <div id="error_explanation">
@@ -46,6 +50,10 @@
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-tag"></i></span>
              <%= f.text_field :name, class: "form-control",size: "90x90", placeholder: "タグ1 タグ2" %>
            </div>
+         </div>
+         <div class="form-group">
+           <%= f.label"公開範囲を選択" %><br>
+           <%= f.select :status, [["公開", "published"], ["下書き", "draft"]],required: true,class:"form-control" %>
          </div>
 
          <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>

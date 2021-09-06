@@ -13,7 +13,7 @@
     <body class="d-flex flex-column vh-100">
       <%= render 'layouts/header' %>
       <main>
-        <p class="notice", style="color: green"><%= notice %></p>
+        <%= render "layouts/notice" %>
         <%= yield %>
       </main>
       <%= render 'layouts/footer' %>

@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.where(status: :published).order(created_at: :desc).page(params[:page]).per(12)
     @post_comments = PostComment.all
     @tags = Tag.all
     @post_comment = PostComment.new
@@ -48,6 +48,7 @@ class PostsController < ApplicationController
        flash[:notice] = "You have created successfully."
        redirect_to posts_path
     else
+       flash[:alert] = "投稿に失敗しました"
        render :new
     end
 
@@ -69,14 +70,19 @@ class PostsController < ApplicationController
    @post.score = Language.get_data(post_params[:content])  #自然言語API
    @tag_list = params[:post][:name].split(nil)
     if @post.update(post_params)
-       @post.save_tag(@tag_list) #save_tagモデルで定義
-       tags = Vision.get_image_data(@post.image)
-       tags.each do |tag|
-         saved_tag = Tag.find_by(name:tag)
-         TagsRelationship.find_by(tag_id:saved_tag.id,post_id:@post.id)
-       end
-       flash[:notice] = "You have updateed successfully."
-       redirect_to posts_path(@posts)
+      if params[:post][:status]== "0"
+        @post.save_tag(@tag_list) #save_tagモデルで定義
+        tags = Vision.get_image_data(@post.image)
+        tags.each do |tag|
+          saved_tag = Tag.find_by(name:tag)
+          TagsRelationship.find_by(tag_id:saved_tag.id,post_id:@post.id)
+        end
+        flash[:notice] = "You have updated successfully."
+        redirect_to posts_path(@posts)
+      else redirect_to posts_path, notice: '下書きに登録しました。'
+      end
+      flash[:alert] = "投稿に失敗しました"
+    else render :edit
     end
   end
 
@@ -89,7 +95,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:destination, :days, :nights, :image, :content, :budget)
+    params.require(:post).permit(:destination, :days, :nights, :image, :content, :budget, :status)
   end
 
 end

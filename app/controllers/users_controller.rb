@@ -10,8 +10,15 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
+    @posts = Post.page(params[:page]).per(8)
+    @posts = Post.where(status: :published).order("created_at DESC").page(params[:page]).per(8)
     @memos = @user.memos
     @tasks = @user.tasks
+  end
+
+  def confirm
+    @user = User.find(params[:id])
+    @posts = @user.posts.where(status: :draft).order('created_at DESC').page(params[:page]).per(20)
   end
 
   def edit

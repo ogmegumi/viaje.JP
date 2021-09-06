@@ -1,5 +1,8 @@
-<% posts.each do |post| %>
- <div class="col-md-4 mx-auto">
+<h2 class="text-center">下書き一覧</h2>
+<% @posts.each do |post| %>
+  <div class="container mt-5">
+    <div class="row d-flex">
+       <div class="col-md-4 mx-auto">
     <div class="card-wrap">
       <div class="card mt-5">
         <div class="card-header align-items-center d-flex">
@@ -56,8 +59,8 @@
             <p class="card-text text-dark ml-3">
               <%= post.content %>
             </p>
-            <!-------自然言語API  管理者側へ移行--------->
-            <!--<span class="sentiment-score">本文の感情分析スコア[<= post.score %>]</span>-->
+            <!-------自然言語API--------->
+            <span class="sentiment-score">本文の感情分析スコア[<%= post.score %>]</span>
             <!-------VISION API auto:tag--------->
             <div class="tag_list">
               <%= render "posts/tag", post: post %>
@@ -67,12 +70,6 @@
               <div id="comment_<%= post.id %>">
                 <%= render "post_comments/comment", post: post %>
               </div>
-              <span id="form_<%= post.id %>">
-                 <%= form_with model:[post, @post_comment], remtote: true do |f| %>
-                   <%= f.text_area :comment, :size => "60x1", class: "form-control", placeholder: "コメントをここに" %>
-                   <%= f.submit "送信する", class: "d-flex btn btn-outline-secondary", id: "submit" %>
-                 <% end %>
-              </span>
               <p class="card-text text-dark text-right">
                 <%= post.created_at.strftime('%Y/%m/%d') %>
               </p>
@@ -82,5 +79,6 @@
         </div>
       </div>
     </div>
+    </div>
+  </div>
 <% end %>
-

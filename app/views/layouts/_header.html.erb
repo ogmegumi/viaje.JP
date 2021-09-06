@@ -64,17 +64,22 @@
                    <i class="fas fa-users"></i>
                  <% end %>
                 </li>
-                <li class="nav-item ml-auto">
+                <li class="nav-item">
+                 <%= link_to admin_posts_path, class: 'nav-link text-dark btn btn-outline-secondary btn-lg mr-3' do %>
+                   <i class="fas fa-home"></i>
+                 <% end %>
+                </li>
+                <li class="nav-item">
                   <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark btn btn-outline-secondary btn-lg' do %>
                    <i class="fas fa-sign-out-alt"></i>
                  <% end %>
                 </li>
              <% else %>
                <li class="nav ml-auto">
-                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark btn btn-outline-secondary btn-lg' %>
                </li>
                <li class="nav ml-auto">
-                 <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+                 <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark btn btn-outline-secondary btn-lg' %>
                </li>
             <% end %>
           </ul>
