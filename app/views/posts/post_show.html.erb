@@ -1,6 +1,9 @@
  <!-------users/show.htmlの画像をクリックすると以下が表示される-------->
  <div class="post_show">
    <h2 class="text-center">投稿内容</h2>
+   <div class="post_plan" style="margin-left: 500px;">
+    <%= render "post_plan", posts: @posts, post: @post %>
+   </div>
  </div>
-     <%= render "index", posts: @posts %>
+ 
  
