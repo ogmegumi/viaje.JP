@@ -1,6 +1,7 @@
 <h4 class="text-center">旅行計画詳細</h4>
   <div class="h4 text-right">
     <%= link_to "plan_days", new_post_plan_day_path(@post, @plan_days), class: "btn btn-secondary fas fa-plus-circle" %>
+    <%= link_to "plan", new_post_plan_day_plan_path(@post),  class: "btn btn-secondary fas fa-plus-circle" %>
   </div>
   <table class="table">
     <thead class="thead-dark">

@@ -1,10 +1,10 @@
   <!---------投稿内容表示-------------->
-  <div class="container">
+  <div class="container mt-5">
     <div class="row">
       <div class="col-md-6">
-          <h2><i class="fas fa-map-marker-alt"></i>
+          <h4 class="text-center"><i class="fas fa-map-marker-alt"></i>
             google mapで観光地の検索
-          </h2>
+          </h4>
           <!-- 地名入力用のinputを追加 -->
           <input id="address" type="textbox" value="沖縄, OKA">
 
@@ -14,7 +14,7 @@
 
           <style>
             #map{
-              width: 400px;
+              width: 450px;
               height: 400px;
             }
           </style>
@@ -58,10 +58,12 @@
         <h4 class="text-center">旅行計画詳細</h4>
          <% if @post.user == current_user %>
             <div class="h4 text-right">
-              <%= link_to "投稿", new_post_plan_day_path(@post), class: "btn btn-secondary fas fa-plus-circle" %>
+              <%= link_to "日付追加", new_post_plan_day_path(@post), class: "btn btn-secondary fas fa-plus-circle" %>
+              <%#= link_to "plan", new_post_plan_day_plan_path(@post, @plan_days),  class: "btn btn-secondary fas fa-plus-circle" %>
             </div>
          <% end %>
         <%= render "plan_days/index", plan_days: @plan_days, post: @post %>
+        <%#= render "plans/index", plan: @plan, post: @post %>
       </div>
       <%= render "post_plan", post: @post, user: @user, post_comment: @post_comment %>
     </div>

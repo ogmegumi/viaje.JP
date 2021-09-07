@@ -1,0 +1,14 @@
+<% plans.each do |plan| %>
+    <th scope="row">
+      <%= plan.start_time.strftime("%H:%M") %><br>
+        <p style="margin-right: 10px;">|</p>
+          <%= plan.finish_time.strftime("%H:%M") %>
+    </th>
+    <td class="h6"><br><%= plan.plan_content %><br></td>
+      <td>
+        <% if post.user == current_user %>
+          <%= link_to "削除", post_plan_day_path(plan.post, plan), method: :delete, class:"bbtn btn-outline-danger btn-sm" %>
+            <%= link_to "編集", edit_post_plan_day_path(plan.post, plan), class:"bbtn btn-outline-success btn-sm" %>
+        <% end %>
+      </td>
+<% end %>
