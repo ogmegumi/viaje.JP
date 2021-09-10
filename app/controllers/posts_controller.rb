@@ -15,9 +15,9 @@ class PostsController < ApplicationController
   def show
     @posts = Post.where(user_id: current_user.id)
     @post = Post.find(params[:id])
-    @user = @post.user
+    @user = @post.user #user：アソシエーション
     @plan_day = PlanDay.new
-    @plans = @plan_day.plans.build
+    @plans = @plan_day.plans.build #plan_daysとplanテーブルを一緒にcreate
     @plan_days = @post.plan_days
     @tags = @post.tags
     # @post = @post.plan

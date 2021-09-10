@@ -3,6 +3,7 @@
   <div class="row">
     <div class="col-md-5">
       <div class="avatar">
+        <!--絶対パスでfallback画像を読み込ませる-->
         <%= attachment_image_tag(@user, :profile_image, :fill, 200, 200, class:"mt-3 rounded-circle", fallback: "//"+request.host+asset_path("noimage.png"), size:"200x200") %>
       </div>
     </div>
@@ -30,7 +31,7 @@
   </div>
 </div>
   <% if @user == current_user %>
-    <div class="container-fluid"><!--<footer>-->
+    <div class="container-fluid">
       <div class="row">
           <div class="col text-center">
             <%= link_to "memo", user_memos_path(@user), method: :get, class: "btn btn-outline-secondary d-block fas fa-book-open" %>
