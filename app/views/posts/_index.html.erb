@@ -3,7 +3,7 @@
     <div class="card-wrap">
       <div class="card mt-5">
         <div class="card-header align-items-center d-flex">
-           <%= attachment_image_tag(post.user, :profile_image, :fill, 60, 60, class: "mt-3 rounded-circle", fallback: "/images/noimage.png", size: "60x60") %>
+           <%= attachment_image_tag(post.user, :profile_image, :fill, 60, 60, class: "mt-3 rounded-circle", fallback: "//"+request.host+asset_path("noimage.png"), size: "60x60") %>
             <span>
              <%= link_to user_path(post.user), class:"ml-3 h5" do %>
                <i class="fas fa-user"></i>

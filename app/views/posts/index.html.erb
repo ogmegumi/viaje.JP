@@ -4,5 +4,9 @@
       <% end %>
     <div class="row">
       <%= render 'index', posts: @posts, user: @user %>
+    <div class="kaminari">
+      <%= paginate @posts, class: "ml-auto" %>
     </div>
+    </div>
+    
   </div>
